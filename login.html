@@ -5,30 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login | CoZero</title>
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
-  <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/light-dark-mode.css" />
+  <link rel="stylesheet" href="css/login.css" /> 
 </head>
-<body class="light-mode">
-
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container">
-      <h1 class="logo">CoZero</h1>
+<body class=""> <header class="site-header">
+    <div class="header-wrapper container">
+      <div class="header-left">
+        <a href="index.html" class="logo-link">
+          <h1 class="logo">CoZero</h1>
+        </a>
+      </div>
+      
+      <div class="header-right">
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
+      </div>
     </div>
-    
-      <button id="theme-toggle" class="theme-toggle">🌙</button>
-    </div>
+    <div class="vaporwave-line"></div>
   </header>
 
-  <!-- Login Form -->
-  <main class="form-container">
-    <div class="form-box">
+  <main class="content-wrapper"> 
+    <div class="login-container"> 
       <h2>Login to Your Account</h2>
-      <form action="/login" method="POST">
+      <form action="/login" method="POST" class="login-form"> 
         <label for="email">Email Address</label>
         <input type="email" id="email" name="email" placeholder="you@example.com" required />
 
@@ -41,14 +42,12 @@
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <p>&copy; 2025 CoZero. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- JavaScript -->
   <script src="js/theme-toggle.js"></script>
 </body>
 </html>
