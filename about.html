@@ -235,7 +235,7 @@
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme) {
                 document.body.classList.add(savedTheme + '-mode'); // Append -mode for consistency
-                themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙'; // Adjusted icons
+                themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️'; // Adjusted icons
             } else {
                 // Default to light mode if nothing saved
                 document.body.classList.add('light-mode');
