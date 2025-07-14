@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration | CoZero</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/light-dark-mode.css" />
+  <link rel="stylesheet" href="css/register.css" /> 
+</head>
+<body class=""> <header class="site-header">
+    <div class="header-wrapper container">
+      <div class="header-left">
+        <a href="index.html" class="logo-link">
+          <h1 class="logo">CoZero</h1>
+        </a>
+      </div>
+      
+      <div class="header-right">
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
+      </div>
+    </div>
+    <div class="vaporwave-line"></div>
+  </header>
+
+  <main class="content-wrapper"> 
+    <div class="register-container"> 
+      <h2>Create Your CoZero Account</h2>
+      <form id="registerForm" class="register-form">
+          <label for="register-username">Username</label>
+          <input type="text" id="register-username" name="username" placeholder="Your username" required />
+
+          <label for="register-email">Email Address</label>
+          <input type="email" id="register-email" name="email" placeholder="you@example.com" required />
+
+          <label for="register-password">Password</label>
+          <input type="password" id="register-password" name="password" placeholder="••••••••" required />
+
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm_password" placeholder="••••••••" required />
+
+        <button type="submit" class="btn-primary">Register</button>
+      </form>
+      <p>Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 CoZero. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+<script src="js/theme-toggle.js"></script>
+<script type="module" src="js/authentication.js"></script>
+
+</body>
+</html>

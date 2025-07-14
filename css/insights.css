@@ -1,0 +1,302 @@
+/* General Body and Layout - Inherited from home.css and activity.css */
+/* No need to redefine body, body.light-mode, .container, .content-wrapper,
+   .site-header, .vaporwave-line, .header-left, .header-right,
+   .header-nav, .nav-link, .theme-toggle, .icon-svg,
+   .notification-button, .profile-button, .profile-name, .dropdown-arrow,
+   .profile-dropdown, .dropdown-item, .site-footer
+   as they are covered by home.css and home-light-dark-mode.css
+   and activity.css. */
+
+/* --- Insight Grid Layout --- */
+.insight-grid {
+    display: grid;
+    grid-template-areas:
+        "overview breakdown"
+        "tips trends";
+    grid-template-columns: 1fr 1fr; /* Two columns, equal width */
+    grid-template-rows: auto auto; /* Two rows, auto height */
+    gap: 20px; /* Space between grid items */
+    max-width: 1400px; /* Maximize width, consistent with dashboard-grid */
+    width: 100%;
+    margin: 0 auto; /* Center the grid */
+    padding: 20px 0; /* Padding inside content-wrapper */
+}
+
+/* Grid Area Assignments */
+.grid-area-overview {
+    grid-area: overview;
+}
+
+.grid-area-breakdown {
+    grid-area: breakdown;
+}
+
+.grid-area-tips {
+    grid-area: tips;
+}
+
+.grid-area-trends {
+    grid-area: trends;
+}
+
+/* --- Insight Section Styling --- */
+.insight-section {
+    background-color: #1F2937; /* Main tile background from home page cards */
+    padding: 25px;
+    border-radius: 12px; /* Softer rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid #374151; /* Subtle border from home page cards */
+    display: flex; /* Use flex for internal content layout */
+    flex-direction: column;
+    height: 100%; /* Ensure tiles fill their grid area */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    overflow: hidden; /* Hide overflow for charts/lists */
+}
+
+/* Light Mode overrides for insight sections */
+body.light-mode .insight-section {
+    background-color: #FFFFFF; /* Pure white for light mode tiles */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #D1D5DB; /* Light grey border for light mode */
+}
+
+/* Headings within Insight sections */
+.insight-section h2 {
+    font-family: 'Sreda', 'JetBrains Mono', monospace;
+    color: #2DD4BF; /* Vibrant cyan/teal for headings */
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-shadow: 0 0 3px rgba(45, 212, 191, 0.4);
+}
+
+body.light-mode .insight-section h2 {
+    color: #ff6b6b; /* Darker red for light mode headings */
+    text-shadow: none;
+}
+
+.insight-section h3 {
+    font-family: 'JetBrains Mono', monospace;
+    color: #00e6e6; /* Consistent with other subheadings */
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+body.light-mode .insight-section h3 {
+    color: #ff6b6b; /* Coral for light mode subheadings */
+}
+
+.insight-section p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    color: #D1D5DB; /* Soft light grey for text */
+    margin-bottom: 15px;
+}
+
+body.light-mode .insight-section p {
+    color: #374151; /* Dark grey for light mode text */
+}
+
+.insight-value {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #6EE7B7; /* Brighter green for key values */
+    text-shadow: 0 0 5px rgba(110, 231, 183, 0.6);
+    margin-bottom: 5px;
+}
+
+body.light-mode .insight-value {
+    color: #cc0000; /* Darker red for light mode key values */
+    text-shadow: none;
+}
+
+.insight-trend {
+    font-size: 0.9em;
+    color: #9CA3AF;
+    font-style: italic;
+}
+
+body.light-mode .insight-trend {
+    color: #6B7280;
+}
+
+/* Insight Cards */
+.insight-card, .tip-card {
+    background-color: #111827; /* Slightly darker background for nested cards */
+    border: 1px solid #374151;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.light-mode .insight-card, body.light-mode .tip-card {
+    background-color: #F8FAFC; /* Lighter background for nested cards in light mode */
+    border-color: #E5E7EB;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.insight-card:hover, .tip-card:hover {
+    border-color: #2DD4BF; /* Highlight on hover */
+    box-shadow: 0 6px 15px rgba(45, 212, 191, 0.3);
+}
+
+body.light-mode .insight-card:hover, body.light-mode .tip-card:hover {
+    border-color: #ff6b6b; /* Coral highlight on hover in light mode */
+    box-shadow: 0 3px 10px rgba(255, 107, 107, 0.2);
+}
+
+.insight-card h3, .tip-card h3 {
+    margin-top: 0;
+    font-size: 1em;
+    color: #2DD4BF; /* Cyan/teal for nested card headings */
+    text-shadow: none; /* Remove shadow for smaller headings */
+}
+
+body.light-mode .insight-card h3, body.light-mode .tip-card h3 {
+    color: #cc0000; /* Darker red for light mode nested card headings */
+}
+
+.insight-card p, .tip-card p {
+    font-size: 0.95em;
+    margin-bottom: 0;
+    color: #D1D5DB;
+}
+
+body.light-mode .insight-card p, body.light-mode .tip-card p {
+    color: #374151;
+}
+
+/* Category List */
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.category-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #374151;
+    font-size: 1em;
+    color: #D1D5DB;
+}
+
+body.light-mode .category-list li {
+    border-bottom-color: #D1D5DB;
+    color: #374151;
+}
+
+.category-list li:last-child {
+    border-bottom: none;
+}
+
+.category-list li span {
+    font-weight: 600;
+    color: #2DD4BF; /* Cyan/teal for values in list */
+}
+
+body.light-mode .category-list li span {
+    color: #ff6b6b; /* Coral for values in list in light mode */
+}
+
+/* Chart Container Styling - Inherited from activity.css */
+/* .chart-container is already defined in activity.css, so no need to redefine here */
+
+.trend-summary {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+.trend-summary strong {
+    color: #6EE7B7; /* Brighter green for emphasis */
+    text-shadow: 0 0 3px rgba(110, 231, 183, 0.5);
+}
+
+body.light-mode .trend-summary strong {
+    color: #cc0000; /* Darker red for emphasis in light mode */
+    text-shadow: none;
+}
+
+/* --- Responsive Design (Media Queries) --- */
+
+/* For screens smaller than 1200px (e.g., larger tablets, small laptops) */
+@media (max-width: 1200px) {
+    .insight-grid {
+        grid-template-areas:
+            "overview overview"
+            "breakdown breakdown"
+            "tips tips"
+            "trends trends";
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+}
+
+/* For screens smaller than 768px (e.g., tablets, larger phones) */
+@media (max-width: 768px) {
+    .insight-grid {
+        gap: 15px;
+    }
+
+    .insight-section {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .insight-section h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .insight-card, .tip-card {
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+
+    .insight-value {
+        font-size: 1.5em;
+    }
+
+    .insight-section p {
+        font-size: 0.95rem;
+    }
+
+    .category-list li {
+        font-size: 0.9em;
+    }
+}
+
+/* For very small screens (e.g., older/smaller phones) */
+@media (max-width: 480px) {
+    .insight-section h2 {
+        font-size: 1.3em;
+    }
+    .insight-value {
+        font-size: 1.3em;
+    }
+    .insight-section h3 {
+        font-size: 1em;
+    }
+    .insight-section p {
+        font-size: 0.9em;
+    }
+}
+
+/* Footer Styling (unchanged, kept your existing styles as they are not header-related) */
+.site-footer {
+    background-color: #1F2937;
+    color: #D1D5DB;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .site-footer {
+    background-color: #d0d2d5;
+    color: #374151;
+}

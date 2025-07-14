@@ -1,0 +1,896 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Updated to match home.css */
+    background-color: #1a1a2e;
+    /* Deep indigo background - Consistent with home.css */
+    color: #e0e0e0;
+    /* Soft off-white for main text - Consistent with home.css */
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    /* Smoother transitions as in home.css */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling, consistent with home.css */
+}
+ 
+body.light-mode {
+    /* Updated to match home-light-dark-mode.css */
+    background-color: #f0f2f5;
+    /* Light grey background for light mode - Consistent with home-light-dark-mode.css */
+    color: #333333;
+    /* Darker text for light mode - Consistent with home-light-dark-mode.css */
+}
+ 
+.container {
+    max-width: 1200px;
+    /* Max width for header/footer */
+    margin: 0 auto;
+    /* Padding for container is handled by header-wrapper padding or main content sections */
+    /* Removed padding: 0 20px; here as header-wrapper handles it */
+}
+ 
+.content-wrapper {
+    flex: 1;
+    /* Allows main content to grow and push footer down */
+    display: flex;
+    justify-content: center;
+    padding: 30px 25px;
+    /* Reintroduced 25px right padding for consistency with main content areas */
+    width: 100%;
+    box-sizing: border-box;
+}
+ 
+/* Site Logo Icon (copied directly from home.css) */
+.site-logo-icon {
+    width: 32px;
+    /* Adjust size as needed for your logo */
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.site-logo-icon .icon-svg {
+    width: 100%;
+    height: 100%;
+    stroke: #00e6e6;
+    /* Consistent with other icons */
+    fill: #00e6e6;
+    /* Fill for the leaf part of the logo */
+}
+ 
+/* Light Mode Site Logo Icon (copied directly from home-light-dark-mode.css) */
+body.light-mode .site-logo-icon .icon-svg {
+    stroke: #ff6b6b;
+    /* Coral for logo outline */
+    fill: #ff6b6b;
+    /* Coral for logo fill */
+}
+ 
+ 
+/* Typography Enhancements */
+h1,
+h2,
+h3 {
+    font-family: 'JetBrains Mono', monospace;
+    /* Consistent fonts */
+    letter-spacing: 0.5px;
+}
+ 
+p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+}
+ 
+/* Logo (CoZero text) - Futuristic Font (copied directly from home.css) */
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00e6e6;
+    /* Vibrant electric cyan - Consistent */
+    text-shadow: 0 0 8px rgba(0, 230, 230, 0.4);
+    /* Subtle glow - Consistent */
+}
+ 
+/* Light mode logo (copied directly from home-light-dark-mode.css) */
+body.light-mode .logo {
+    color: #ff6b6b;
+    /* Vibrant coral for logo in light mode - Consistent */
+    text-shadow: 0 0 8px rgba(255, 107, 107, 0.4);
+    /* Consistent */
+}
+ 
+/* Styling for the clickable logo link (copied directly from home.css) */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    /* Make logo and text align horizontally */
+    align-items: center;
+    gap: 10px;
+    /* Space between logo and text */
+}
+ 
+.logo-link:hover .logo {
+    opacity: 0.8;
+    text-shadow: 0 0 12px rgba(0, 230, 230, 0.7);
+}
+ 
+/* Light mode logo link hover (copied directly from home-light-dark-mode.css) */
+body.light-mode .logo-link:hover .logo {
+    opacity: 0.8;
+    text-shadow: 0 0 12px rgba(255, 107, 107, 0.7);
+    /* Adjusted for light mode coral */
+}
+ 
+/* Header (copied and adapted from home.css) */
+.site-header {
+    width: 100%;
+    position: relative;
+    /* Consistent with home.css */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    /* Only top padding here */
+    background-color: rgba(26, 26, 46, 0.9);
+    /* Slightly transparent background for glass effect - Consistent */
+    backdrop-filter: blur(12px);
+    /* Stronger blur - Consistent */
+    border-bottom: 1px solid rgba(0, 230, 230, 0.1);
+    /* Subtle bottom border - Consistent */
+    transition: background-color 0.4s ease, color 0.4s ease;
+    z-index: 10;
+}
+ 
+/* Light Mode Header Overrides (copied directly from home-light-dark-mode.css) */
+body.light-mode .site-header {
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Lighter, more transparent header - Consistent */
+    border-bottom: 1px solid rgba(255, 107, 107, 0.1);
+    /* Subtle coral border - Consistent */
+}
+ 
+ 
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 15px;
+    padding-left: 25px;
+    /* Consistent with home.css */
+    padding-right: 25px;
+    /* Consistent with home.css */
+    box-sizing: border-box;
+    /* Ensures padding is included in the width */
+}
+ 
+/* Animated Vaporwave Line (copied directly from home.css) */
+.vaporwave-line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00e6e6, transparent);
+    /* Vibrant electric cyan - Consistent */
+    animation: vaporWave 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    opacity: 0.7;
+    margin-top: 5px;
+}
+ 
+/* Light Mode Vaporwave Line (copied directly from home-light-dark-mode.css) */
+body.light-mode .vaporwave-line {
+    background: linear-gradient(90deg, transparent, #ff6b6b, transparent);
+    /* Coral vapor wave line - Consistent */
+}
+ 
+@keyframes vaporWave {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0.4;
+    }
+ 
+    50% {
+        transform: translateX(100%);
+        opacity: 1;
+    }
+ 
+    100% {
+        transform: translateX(-100%);
+        opacity: 0.4;
+    }
+}
+ 
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Increased gap between elements in header-right, consistent with home.css */
+}
+ 
+.header-left {
+    justify-content: flex-start;
+    margin-top: 0;
+    /* gap: 10px; Handled by .logo-link now */
+}
+ 
+.header-right {
+    justify-content: flex-end;
+    margin-top: 0;
+    gap: 15px; /* Adjusted gap to prevent overlap */
+    flex-wrap: wrap; /* Allow items to wrap */
+}
+ 
+/* Navigation Links in Header (copied directly from home.css) */
+.header-nav {
+    display: flex;
+    gap: 20px;
+    /* Space between nav links */
+    font-family: 'JetBrains Mono', monospace;
+}
+ 
+.header-nav .nav-link {
+    text-decoration: none;
+    color: #00e6e6;
+    /* Vibrant electric cyan link color - Consistent */
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+ 
+/* Light Mode Navigation Links (copied directly from home-light-dark-mode.css) */
+body.light-mode .header-nav .nav-link {
+    color: #ff6b6b;
+    /* Vibrant coral link color - Consistent */
+}
+ 
+.header-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background: #00e6e6;
+    /* Vibrant electric cyan - Consistent */
+    transition: width 0.3s ease;
+}
+ 
+/* Light Mode Navigation Underline (copied directly from home-light-dark-mode.css) */
+body.light-mode .header-nav .nav-link::after {
+    background: #ff6b6b;
+    /* Vibrant coral underline - Consistent */
+}
+ 
+.header-nav .nav-link:hover::after,
+.header-nav .nav-link.current-page::after {
+    /* Current page also has underline */
+    width: 100%;
+}
+ 
+.header-nav .nav-link:hover {
+    color: #00ff00;
+    /* Brighter green on hover - Consistent */
+}
+ 
+/* Light Mode Navigation Hover (copied directly from home-light-dark-mode.css) */
+body.light-mode .header-nav .nav-link:hover {
+    color: #cc0000;
+    /* Darker red on hover - Consistent */
+}
+ 
+.header-nav .nav-link.current-page {
+    /* Style for the active page */
+    color: #00e6e6;
+    /* Cyan for current page */
+    font-weight: 700;
+}
+ 
+/* Light Mode Current Page (copied directly from home-light-dark-mode.css) */
+body.light-mode .header-nav .nav-link.current-page {
+    color: #ff6b6b;
+    /* Coral for light mode current page */
+}
+ 
+/* Theme Toggle Button (copied directly from home.css and home-light-dark-mode.css) */
+.theme-toggle {
+    background: rgba(0, 230, 230, 0.08);
+    /* Consistent */
+    border: 1px solid rgba(0, 230, 230, 0.3);
+    /* Consistent */
+    padding: 10px 16px;
+    border-radius: 15px;
+    font-size: 1.3rem;
+    color: #00e6e6;
+    /* Vibrant electric cyan icon color - Consistent */
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    z-index: 11;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* Consistent */
+    transition: all 0.3s ease;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+ 
+body.light-mode .theme-toggle {
+    background: rgba(255, 107, 107, 0.08);
+    /* Consistent */
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    /* Consistent */
+    color: #ff6b6b;
+    /* Vibrant coral icon color - Consistent */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Consistent */
+}
+ 
+.theme-toggle:hover {
+    background: rgba(0, 230, 230, 0.18);
+    /* Consistent */
+    border-color: #00ff00;
+    /* Consistent */
+    color: #00ff00;
+    /* Consistent */
+    box-shadow: 0 0 20px rgba(0, 230, 230, 0.7);
+    /* Consistent */
+}
+ 
+body.light-mode .theme-toggle:hover {
+    background: rgba(255, 107, 107, 0.18);
+    /* Consistent */
+    border-color: #cc0000;
+    /* Consistent */
+    color: #cc0000;
+    /* Consistent */
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+    /* Consistent */
+}
+ 
+/* Custom SVG icons for general use (copied directly from home.css and home-light-dark-mode.css) */
+.icon-svg {
+    width: 24px;
+    height: 24px;
+    stroke: #00e6e6;
+    /* Vibrant electric cyan for icons */
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    /* Default to no fill for general icons */
+    transition: stroke 0.3s ease;
+    /* Smooth transition for icon color */
+}
+ 
+body.light-mode .icon-svg {
+    stroke: #ff6b6b;
+    /* Coral for icons - Consistent */
+}
+ 
+ 
+/* Notification Button (now a link) */
+.notification-button {
+    background: rgba(0, 230, 230, 0.08); /* Consistent */
+    border: 1px solid rgba(0, 230, 230, 0.3); /* Consistent */
+    padding: 10px 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Consistent */
+    transition: all 0.3s ease;
+}
+body.light-mode .notification-button {
+    background: rgba(255, 107, 107, 0.08); /* Consistent */
+    border: 1px solid rgba(255, 107, 107, 0.3); /* Consistent */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Consistent */
+}
+.notification-button:hover {
+    background: rgba(0, 230, 230, 0.18); /* Consistent */
+    border-color: #00ff00; /* Consistent */
+    box-shadow: 0 0 20px rgba(0, 230, 230, 0.7); /* Consistent */
+}
+body.light-mode .notification-button:hover {
+    background: rgba(255, 107, 107, 0.18); /* Consistent */
+    border-color: #cc0000; /* Consistent */
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.4); /* Consistent */
+}
+.notification-button .icon-svg {
+    stroke: #00e6e6;
+}
+body.light-mode .notification-button .icon-svg {
+    stroke: #ff6b6b;
+}
+.notification-button:hover .icon-svg {
+    stroke: #00ff00;
+}
+body.light-mode .notification-button:hover .icon-svg {
+    stroke: #cc0000;
+}
+ 
+/* Profile Button */
+ .profile-area { /* Added for dropdown positioning context */
+            position: relative; /* Ensure this is here for dropdown positioning */
+        }
+        .profile-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 10px 16px;
+            border-radius: 15px;
+            background: rgba(0, 230, 230, 0.08);
+            border: 1px solid rgba(0, 230, 230, 0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        body.light-mode .profile-button {
+            background: rgba(255, 107, 107, 0.08);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .profile-button:hover {
+            background: rgba(0, 230, 230, 0.18);
+            border-color: #00ff00;
+            box-shadow: 0 0 20px rgba(0, 230, 230, 0.7);
+        }
+        body.light-mode .profile-button:hover {
+            background: rgba(255, 107, 107, 0.18);
+            border-color: #cc0000;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+        }
+        .profile-button .icon-svg {
+            stroke: #00e6e6;
+        }
+        body.light-mode .profile-button .icon-svg {
+            stroke: #ff6b6b;
+        }
+        .profile-button:hover .icon-svg {
+            stroke: #00ff00;
+        }
+        body.light-mode .profile-button:hover .icon-svg {
+            stroke: #cc0000;
+        }
+ 
+        .profile-name {
+            color: #00e6e6;
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+            display: none; /* Hidden by default */
+        }
+        body.light-mode .profile-name {
+            color: #ff6b6b; /* Consistent */
+        }
+ 
+        /* Responsive breakpoint for profile name (copied directly from home.css) */
+        @media (min-width: 640px) {
+            .profile-name {
+                display: block; /* Show on larger screens */
+            }
+        }
+ 
+        .dropdown-arrow {
+            width: 1rem;
+            height: 1rem;
+            stroke: #00e6e6;
+        }
+        body.light-mode .dropdown-arrow {
+            stroke: #ff6b6b;
+        }
+        .profile-button:hover .dropdown-arrow {
+            stroke: #00ff00;
+        }
+        body.light-mode .profile-button:hover .dropdown-arrow {
+            stroke: #cc0000;
+        }
+ 
+ 
+        /* Profile Dropdown styles (copied directly from home.css and home-light-dark-mode.css) */
+        .profile-dropdown {
+            position: absolute;
+            top: calc(100% + 5px);
+            right: 95px; /* Aligned with the header content's right padding */
+            background-color: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 230, 230, 0.3);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            min-width: 150px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s;
+            z-index: 60;
+        }
+        body.light-mode .profile-dropdown {
+            background-color: rgba(255, 255, 255, 0.9); /* Consistent */
+            border: 1px solid rgba(255, 107, 107, 0.3); /* Consistent */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Consistent */
+        }
+ 
+        .profile-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+ 
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            border-radius: 0.5rem;
+        }
+        body.light-mode .dropdown-item {
+            color: #333333; /* Consistent dark text */
+        }
+ 
+        .dropdown-item:hover {
+            background-color: rgba(0, 230, 230, 0.15);
+            color: #00e6e6;
+        }
+        body.light-mode .dropdown-item:hover {
+            background-color: rgba(255, 107, 107, 0.15); /* Consistent */
+            color: #ff6b6b; /* Consistent */
+        }
+ 
+:root {
+    /* Dark Mode Defaults (from styles.css) */
+    --main-bg-color: #1a1a2e;
+    --text-color-primary: #e0e0e0;
+    --accent-color: #00e6e6;
+    /* Vibrant electric cyan */
+    --accent-shadow: rgba(0, 230, 230, 0.3);
+    --hero-title-color: #00e6e6;
+    --hero-title-shadow: rgba(0, 230, 230, 0.5);
+    --heading-color: #00e6e6;
+    --text-color-secondary: #b0b0b0;
+    /* Slightly desaturated text for feature cards */
+    --border-color-subtle: rgba(255, 255, 255, 0.08);
+    /* Subtle border for glassmorphism */
+    --card-bg-dark: rgba(255, 255, 255, 0.03);
+    --card-shadow-dark: rgba(0, 0, 0, 0.3);
+ 
+    /* Light Mode Overrides (from light-dark-mode.css) */
+    /* These will be applied when body.light-mode is active */
+    --light-main-bg-color: #f0f2f5;
+    --light-text-color-primary: #333333;
+    --light-accent-color: #ff6b6b;
+    /* Vibrant coral */
+    --light-accent-shadow: rgba(255, 107, 107, 0.3);
+    --light-hero-title-color: #ff6b6b;
+    --light-hero-title-shadow: rgba(255, 107, 107, 0.5);
+    --light-heading-color: #ff6b6b;
+    --light-text-color-secondary: #555555;
+    --light-border-color-subtle: rgba(0, 0, 0, 0.1);
+    --light-card-bg-light: rgba(255, 255, 255, 0.6);
+    --light-card-shadow-light: rgba(0, 0, 0, 0.15);
+}
+ 
+/* Apply light mode variables */
+body.light-mode {
+    --main-bg-color: var(--light-main-bg-color);
+    --text-color-primary: var(--light-text-color-primary);
+    --accent-color: var(--light-accent-color);
+    --accent-shadow: var(--light-accent-shadow);
+    --hero-title-color: var(--light-hero-title-color);
+    --hero-title-shadow: var(--light-hero-title-shadow);
+    --heading-color: var(--light-heading-color);
+    --text-color-secondary: var(--light-text-color-secondary);
+    --border-color-subtle: var(--light-border-color-subtle);
+    --card-bg-dark: var(--light-card-bg-light);
+    /* Use light card background in light mode */
+    --card-shadow-dark: var(--light-card-shadow-light);
+    /* Use light card shadow in light mode */
+}
+ 
+ 
+/* Main container for the About page content */
+.about-page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* Space between the new section boxes */
+    margin-top: 40px;
+    /* Space from header */
+    margin-bottom: 40px;
+    /* Space from footer */
+}
+ 
+/* Style for each individual section box */
+.about-section-box {
+    padding: 40px;
+    /* Padding inside each box */
+    background: var(--card-bg-dark);
+    /* Use variable for card background */
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color-subtle);
+    /* Use variable for subtle border */
+    border-radius: 18px;
+    /* Rounded corners for the boxes */
+    box-shadow: 0 6px 20px var(--card-shadow-dark);
+    /* Shadow for depth */
+    color: var(--text-color-primary);
+    /* Ensure text color is primary */
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+/* Specific styling for the intro box if needed, though default will apply */
+.intro-box h1 {
+    font-size: 2.8rem;
+    color: var(--hero-title-color);
+    /* Use the hero title color variable */
+    text-shadow: 0 0 10px var(--hero-title-shadow);
+    margin-bottom: 1em;
+    text-align: center;
+    /* Center the main title */
+}
+ 
+.about-section-box h2 {
+    font-size: 2.2rem;
+    color: var(--heading-color);
+    /* Use a general heading color variable */
+    border-bottom: 2px solid var(--border-color-subtle);
+    /* Use a subtle border color variable */
+    padding-bottom: 8px;
+    margin-top: 0;
+    /* Remove top margin as boxes provide separation */
+    margin-bottom: 1em;
+}
+ 
+/* Paragraphs within the about container */
+.about-section-box p {
+    font-size: 1.05rem;
+    color: var(--text-color-secondary);
+    /* Use a secondary text color variable */
+    margin-bottom: 1em;
+}
+ 
+/* List items */
+.about-section-box ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5em;
+}
+ 
+.about-section-box ul li {
+    margin-bottom: 0.8em;
+    padding-left: 1.8em;
+    position: relative;
+    font-size: 1.05em;
+    color: var(--text-color-secondary);
+}
+ 
+.about-section-box ul li:before {
+    content: '•';
+    color: var(--accent-color);
+    /* Use the main accent color */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.8em;
+    position: absolute;
+}
+ 
+/* SDG Info Box - styled like a feature card but with a distinct accent */
+.sdg-info {
+    background: rgba(0, 230, 230, 0.05);
+    /* Default to cyan for dark mode */
+    border-left: 5px solid var(--accent-color);
+    /* Use accent color for border */
+    padding: 18px 25px;
+    margin-top: 2em;
+    border-radius: 8px;
+    font-size: 0.95em;
+    color: var(--text-color-secondary);
+    box-shadow: 0 4px 15px var(--accent-shadow);
+    /* Use accent shadow */
+    transition: all 0.3s ease;
+}
+ 
+/* Team Grid - similar to grid-columns */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 2em;
+}
+ 
+/* Team Member Card - styled like a feature card */
+.team-member {
+    background: var(--card-bg-dark);
+    /* Use variable for card background */
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color-subtle);
+    /* Use variable for subtle border */
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 6px 20px var(--card-shadow-dark);
+    /* Use variable for card shadow */
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+ 
+    /* New Flexbox styles for image and text alignment */
+    display: flex;
+    align-items: center;
+    /* Vertically align image and text */
+    text-align: left;
+    /* Align text content to the left within the flex container */
+    gap: 20px;
+    /* Space between the image and the text */
+}
+ 
+.team-member:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-color);
+    /* Accent color on hover */
+    box-shadow: 0 10px 30px var(--accent-shadow);
+    /* Accent shadow on hover */
+}
+ 
+/* Style for the team member image */
+.team-member img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    /* Makes the image circular */
+    flex-shrink: 0;
+    /* Prevents the image from shrinking */
+    margin-bottom: 0;
+    /* Override any previous margin */
+}
+ 
+/* Container for team member text to manage its layout */
+.team-member-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Allows the text content to take up available space */
+}
+ 
+.team-member h4 {
+    color: var(--accent-color);
+    /* Accent color for name */
+    margin-bottom: 5px;
+    /* Space below name */
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-top: 0;
+    /* Remove default top margin */
+}
+ 
+.team-member p {
+    color: var(--text-color-secondary);
+    /* Secondary text color for roles */
+    font-size: 0.95em;
+    margin-bottom: 0;
+    /* Remove default bottom margin */
+}
+ 
+/* Section divider - now used only for the intro box if desired, or can be removed */
+.section-divider {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--border-color-subtle), rgba(0, 0, 0, 0));
+    margin: 3em 0;
+}
+ 
+/* Ensure main content takes available space for sticky footer */
+.content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    /* Use flex to center the about-container if needed */
+    justify-content: center;
+    align-items: flex-start;
+    /* Align to top, not center, to allow scrolling */
+    padding: 20px 0;
+    /* Add padding for overall content */
+    width: 100%;
+}
+ 
+/* Responsive adjustments for about page */
+@media (max-width: 768px) {
+    .about-section-box {
+        padding: 25px;
+    }
+ 
+    .intro-box h1 {
+        font-size: 2.2rem;
+    }
+ 
+    .about-section-box h2 {
+        font-size: 1.8rem;
+    }
+ 
+    /* Adjust team member layout for smaller screens */
+    .team-member {
+        flex-direction: column;
+        /* Stack image and text vertically */
+        text-align: center;
+        /* Center text when stacked */
+        gap: 10px;
+        /* Reduce gap when stacked */
+    }
+ 
+    .team-member img {
+        margin-bottom: 10px;
+        /* Add margin below image when stacked */
+    }
+ 
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+ 
+/* Responsive adjustments for smaller screens to prevent header overlap */
+@media (max-width: 640px) {
+    .header-wrapper {
+        flex-direction: column; /* Stack header content vertically */
+        align-items: flex-start; /* Align stacked items to the left */
+        gap: 15px; /* Add gap between stacked sections */
+    }
+ 
+    .header-left,
+    .header-right {
+        width: 100%; /* Make them take full width when stacked */
+        justify-content: space-between; /* Distribute items evenly in their row */
+    }
+ 
+    .header-right {
+        gap: 10px; /* Reduce gap further for smaller screens */
+    }
+ 
+    /* Hide profile name on very small screens to prevent overlap */
+    .profile-name {
+        display: none;
+    }
+ 
+    /* Adjust dropdown position when header elements are stacked */
+    .profile-dropdown {
+        right: 25px; /* Keep it aligned with the right padding of the header wrapper */
+        top: calc(100% + 15px); /* Adjust top position relative to the header */
+    }
+}
+ 
+/* For even smaller screens for button compactness */
+@media (max-width: 480px) {
+    .header-right {
+        flex-wrap: wrap; /* Ensure items wrap if they can't fit */
+        justify-content: center; /* Center buttons if they wrap */
+    }
+ 
+    .theme-toggle,
+    .notification-link,
+    .profile-button {
+        padding: 8px 12px; /* Slightly smaller padding for compactness */
+        font-size: 1.1rem; /* Adjust font size for theme toggle icon */
+    }
+}
+
+/* Footer Styling (unchanged, kept your existing styles as they are not header-related) */
+.site-footer {
+    background-color: #1F2937;
+    color: #D1D5DB;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .site-footer {
+    background-color: #F8FAFC;
+    color: #374151;
+}

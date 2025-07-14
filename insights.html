@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | CoZero</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sreda&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Core theme styles (dark mode base) -->
+    <link rel="stylesheet" href="css/home.css"> 
+    <!-- Activity-specific styles (if any shared elements are defined here) -->
+    <link rel="stylesheet" href="css/activity.css">
+    <!-- Light mode overrides -->
+    <link rel="stylesheet" href="css/home-light-dark-mode.css">
+    <!-- New Insight page specific styles -->
+    <link rel="stylesheet" href="css/insights.css"> 
+    
+    <!-- Chart.js for potential future charts (already in your activity.html) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+ 
+<body class="body-layout">
+ 
+    <header class="site-header">
+        <div class="header-wrapper">
+            <div class="header-left">
+                <div class="site-logo-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 4C10 4 8 6 8 8C8 10 12 14 12 14C12 14 16 10 16 8C16 6 14 4 12 4Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <a href="home.html" class="logo-link">
+                    <h1 class="logo">CoZero</h1>
+                </a>
+            </div>
+            
+            <div class="header-right">
+                <nav class="header-nav">
+                    <a href="home.html" class="nav-link">Home</a>
+                    <a href="activity.html" class="nav-link">Activity</a>
+                    <a href="insights.html" class="nav-link current-page">Dashboard</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </nav>
+
+                <a href="notif.html" class="notification-button" id="notification-link">
+                    <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </a>
+                
+                <button id="profileDropdownButton" class="profile-button">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="profile-name" id="profileUsername">Loading...</span>
+                    <svg class="icon-svg dropdown-arrow" viewBox="0 0 24 24">
+                        <path d="M6 9l6 6 6-6"></path>
+                    </svg>
+                </button>
+                
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+
+                <div id="profileDropdown" class="profile-dropdown">
+                    <a href="#" class="dropdown-item">Your Profile</a>
+                    <a href="settings.html" class="dropdown-item">Settings</a>
+                    <a href="#" id="logoutButton" class="dropdown-item">Log out</a>
+                </div>
+            </div>
+        </div>
+        <div class="vaporwave-line"></div>
+    </header>
+ 
+    <main class="content-wrapper">
+        <div class="insight-grid">
+            <div class="insight-section grid-area-overview">
+                <h2>Your Carbon Footprint Overview</h2>
+                <p>Understand your environmental impact with detailed insights into your activities.</p>
+                <div class="insight-card">
+                    <h3>Total Emissions This Month</h3>
+                    <p class="insight-value"><strong>250 kg CO2e</strong></p>
+                    <p class="insight-trend">↓ 10% from last month</p>
+                </div>
+                <div class="insight-card">
+                    <h3>Most Impactful Category</h3>
+                    <p class="insight-value"><strong>Transportation</strong></p>
+                    <p class="insight-trend">Accounts for 45% of your emissions</p>
+                </div>
+            </div>
+
+            <div class="insight-section grid-area-breakdown">
+                <h2>Category Breakdown</h2>
+                <div class="chart-container">
+                    <canvas id="insightPieChart"></canvas>
+                    <!-- Placeholder for a Chart.js pie chart -->
+                </div>
+                <ul class="category-list">
+                    <li>Transportation: <span>112.5 kg CO2e</span></li>
+                    <li>Household: <span>60 kg CO2e</span></li>
+                    <li>Food & Diet: <span>45 kg CO2e</span></li>
+                    <li>Home Energy Usage: <span>20 kg CO2e</span></li>
+                    <li>Consumption & Lifestyle: <span>12.5 kg CO2e</span></li>
+                </ul>
+            </div>
+
+            <div class="insight-section grid-area-tips">
+                <h2>Tips for Reduction</h2>
+                <div class="tip-card">
+                    <h3>Go Green with Transport</h3>
+                    <p>Consider cycling or public transport for short distances. Carpool with friends or colleagues to reduce fuel consumption.</p>
+                </div>
+                <div class="tip-card">
+                    <h3>Optimize Home Energy</h3>
+                    <p>Unplug electronics when not in use, switch to energy-efficient appliances, and consider LED lighting.</p>
+                </div>
+                <div class="tip-card">
+                    <h3>Mind Your Diet</h3>
+                    <p>Reduce red meat consumption and explore plant-based meals. Locally sourced food also helps!</p>
+                </div>
+            </div>
+
+            <div class="insight-section grid-area-trends">
+                <h2>Historical Trends</h2>
+                <p>Track your progress over time. Consistency is key!</p>
+                <div class="chart-container">
+                    <canvas id="insightLineChart"></canvas>
+                    <!-- Placeholder for a Chart.js line chart -->
+                </div>
+                <p class="trend-summary">Your carbon footprint has steadily decreased by <strong>15% over the last 6 months</strong>. Keep up the great work!</p>
+            </div>
+        </div>
+    </main>
+ 
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CoZero. All rights reserved.</p>
+        </div>
+    </footer>
+ 
+    <!-- Firebase Initialization (from your activity.html) -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+      import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+     
+      const firebaseConfig = {
+        apiKey: "AIzaSyA2ydl9-68gA-_3UXpxEJY6CfvTmCMPsLo",
+        authDomain: "cozero-tracker.firebaseapp.com",
+        projectId: "cozero-tracker",
+        storageBucket: "cozero-tracker.firebasestorage.app",
+        messagingSenderId: "178790925784",
+        appId: "1:178790925784:web:f3b6d1a9e1eeadee5adead",
+        measurementId: "G-PQEWJ0RVCW"
+      };
+     
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app); // Initialize Firestore
+     
+      const profileUsername = document.getElementById("profileUsername");
+      const logoutButton = document.getElementById("logoutButton");
+     
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          console.log("✅ User is signed in:", user.email);
+          const docRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            profileUsername.textContent = data.username || "User";
+          } else {
+            profileUsername.textContent = "Unknown";
+          }
+        } else {
+          console.warn("⚠️ No user is signed in.");
+          if (window.location.pathname !== '/index.html' && window.location.pathname !== '/login.html') {
+            window.location.href = "login.html";
+          }
+        }
+     
+        if (logoutButton) {
+          logoutButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            signOut(auth)
+              .then(() => {
+                console.log("✅ User signed out successfully.");
+                window.location.href = "index.html";
+              })
+              .catch((error) => {
+                console.error("❌ Error signing out:", error);
+              });
+          });
+        }
+      });
+    </script>
+
+    <!-- Shared theme toggle and profile dropdown logic -->
+    <script src="js/home-theme-toggle.js"></script>
+    <!-- Placeholder for insight-specific JavaScript if needed in the future -->
+    <script src="js/insights.js"></script> 
+</body>
+</html>

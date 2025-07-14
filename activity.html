@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Log | CoZero </title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sreda&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/activity.css">
+    <link rel="stylesheet" href="css/home-light-dark-mode.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+ 
+<body class="body-layout">
+    <header class="site-header">
+        <div class="header-wrapper">
+            <div class="header-left">
+                <div class="site-logo-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 4C10 4 8 6 8 8C8 10 12 14 12 14C12 14 16 10 16 8C16 6 14 4 12 4Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <a href="home.html" class="logo-link">
+                    <h1 class="logo">CoZero</h1>
+                </a>
+            </div>
+            
+            <div class="header-right">
+                <nav class="header-nav">
+                    <a href="home.html" class="nav-link">Home</a>
+                    <a href="activity.html" class="nav-link current-page">Activity</a>
+                    <a href="insights.html" class="nav-link">Dashboard</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </nav>
+
+                <a href="notif.html" class="notification-button" id="notification-link">
+                    <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </a>
+
+                <button id="profileDropdownButton" class="profile-button">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="profile-name" id="profileUsername">Loading...</span>
+                    <svg class="icon-svg dropdown-arrow" viewBox="0 0 24 24">
+                        <path d="M6 9l6 6 6-6"></path>
+                    </svg>
+                </button>
+                
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+
+                <div id="profileDropdown" class="profile-dropdown">
+                    <a href="#" class="dropdown-item">Your Profile</a>
+                    <a href="settings.html" class="dropdown-item">Settings</a>
+                    <a href="#" id="logoutButton" class="dropdown-item">Log out</a>
+                </div>
+            </div>
+        </div>
+        <div class="vaporwave-line"></div>
+    </header>
+ 
+    <main class="content-wrapper">
+        <div class="dashboard-grid">
+            <div class="activity-input-section grid-area-form">
+                <h2>Log Your Daily Activities</h2>
+                <div class="input-group">
+                    <label for="activityDate">Date:</label>
+                    <input type="date" id="activityDate" class="date-input">
+                </div>
+ 
+                <div class="input-group">
+                    <label for="activityCategory">Category:</label>
+                    <select id="activityCategory">
+                        <option value="transportation">Transportation</option>
+                        <option value="household">Household</option>
+                        <option value="food">Food & Diet</option>
+                        <option value="energy">Home Energy Usage</option>
+                        <option value="lifestyle">Consumption & Lifestyle</option>
+                    </select>
+                </div>
+ 
+                <div id="transportationFields" class="category-fields active">
+                    <div class="input-group">
+                        <label for="transportMode">Mode of Transport:</label>
+                        <select id="transportMode">
+                            <option value="car">Car</option>
+                            <option value="motorcycle">Motorcycle</option>
+                            <option value="bus">Bus/Jeepney</option>
+                            <option value="train">Train/MRT/LRT</option>
+                            <option value="taxi">Taxi/Ride-sharing</option>
+                            <option value="air">Air Travel</option>
+                            <option value="walk_cycle">Walking/Cycling</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="transportDistance">Distance (km):</label>
+                        <input type="number" id="transportDistance" placeholder="e.g., 10">
+                    </div>
+                    <div class="input-group" id="fuelTypeGroup" style="display: none;">
+                        <label for="fuelType">Fuel Type:</label>
+                        <select id="fuelType">
+                            <option value="gasoline">Gasoline</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="electric">Electric</option>
+                            <option value="hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                </div>
+ 
+                <div id="householdFields" class="category-fields">
+                    <div class="input-group">
+                        <label for="numAdults">Number of Adults in Household:</label>
+                        <input type="number" id="numAdults" min="0" value="1" placeholder="e.g., 2">
+                    </div>
+                    <div class="input-group">
+                        <label for="numChildren">Number of Children (under 13) in Household:</label>
+                        <input type="number" id="numChildren" min="0" value="0" placeholder="e.g., 1">
+                    </div>
+                    <div class="input-group">
+                        <label for="houseSize">House Size:</label>
+                        <select id="houseSize">
+                            <option value="small">Small (e.g., apartment/condo)</option>
+                            <option value="medium">Medium (e.g., townhouse/small house)</option>
+                            <option value="large">Large (e.g., detached house)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="primaryEnergySource">Primary Household Energy Source:</label>
+                        <select id="primaryEnergySource">
+                            <option value="electricity">Electricity Grid</option>
+                            <option value="gas">Natural Gas</option>
+                            <option value="solar">Solar Panels</option>
+                            <option value="unknown">Don't Know</option>
+                        </select>
+                    </div>
+                </div>
+ 
+                <div id="foodFields" class="category-fields">
+                    <div class="input-group">
+                        <label for="mealType">Meal Type/Protein Source:</label>
+                        <select id="mealType">
+                            <option value="meat-heavy">Meat-heavy (Beef/Lamb)</option>
+                            <option value="poultry-pork">Poultry/Pork</option>
+                            <option value="fish">Fish/Seafood</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="foodWaste">Food Waste:</label>
+                        <select id="foodWaste">
+                            <option value="none">None</option>
+                            <option value="small">Small Portion</option>
+                            <option value="medium">Medium Portion</option>
+                            <option value="large">Large Portion</option>
+                        </select>
+                    </div>
+                </div>
+ 
+                <div id="energyFields" class="category-fields">
+                    <div class="input-group">
+                        <label for="electricityUsage">Daily Electricity Usage (general):</label>
+                        <select id="electricityUsage">
+                            <option value="low">Low (e.g., lights only)</option>
+                            <option value="medium">Medium (e.g., fan, TV)</option>
+                            <option value="high">High (e.g., AC, multiple appliances)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="showerDuration">Daily Shower Duration:</label>
+                        <select id="showerDuration">
+                            <option value="short">Short (5 mins)</option>
+                            <option value="medium">Medium (10 mins)</option>
+                            <option value="long">Long (15+ mins)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="wasteRecycled">Waste Recycled Today:</label>
+                        <select id="wasteRecycled">
+                            <option value="none">None</option>
+                            <option value="some">Some (e.g., bottles, paper)</option>
+                            <option value="most">Most (e.g., food, plastic, paper)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="wasteGeneral">General Waste (kg):</label>
+                        <input type="number" id="wasteGeneral" step="0.1" placeholder="e.g., 0.5">
+                    </div>
+                </div>
+ 
+                <div id="lifestyleFields" class="category-fields">
+                    <div class="input-group">
+                        <label for="itemType">Item Purchased (e.g., New T-shirt, Smartphone):</label>
+                        <input type="text" id="itemType" placeholder="e.g., New T-shirt, Smartphone">
+                    </div>
+                    <div class="input-group">
+                        <label for="packagingWaste">Packaging Waste:</label>
+                        <select id="packagingWaste">
+                            <option value="none">None</option>
+                            <option value="minimal">Minimal</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="excessive">Excessive</option>
+                        </select>
+                    </div>
+                </div>
+ 
+                <button id="logActivityButton" class="log-button">Log Activity</button>
+            </div>
+ 
+            <div class="daily-carbon-summary-section grid-area-daily-summary">
+                <h2>Daily Carbon Footprint</h2>
+                <p>For <span id="currentDateDisplay">Today</span>: <strong id="dailyCarbonTotal">0.00 kg CO2e</strong></p>
+                <div class="chart-container">
+                    <canvas id="dailyCarbonPieChart"></canvas>
+                </div>
+            </div>
+ 
+            <div class="activity-list-section grid-area-recent-activities">
+                <h2>Your Recent Activities</h2>
+                <ul id="activityList">
+                    <li class="no-activities">No activities logged yet.</li>
+                </ul>
+            </div>
+ 
+            <div class="weekly-carbon-summary-section grid-area-weekly-summary">
+                <h2>Weekly Carbon Footprint</h2>
+                <p>Select Week: <input type="week" id="weekSelector"></p>
+                <div id="weeklySummaryDetails">
+                    <p>Total for <span id="selectedWeekDisplay">Current Week</span>: <strong id="weeklyCarbonTotal">0.00 kg CO2e</strong></p>
+                    <div class="chart-container">
+                        <canvas id="weeklyCarbonBarChart"></canvas>
+                    </div>
+                    <h3>Breakdown by Category:</h3>
+                    <ul id="weeklyCategoryBreakdown">
+                        <li>Transportation: <span id="weeklyTransportCarbon">0.00 kg CO2e</span></li>
+                        <li>Household: <span id="weeklyHouseholdCarbon">0.00 kg CO2e</span></li>
+                        <li>Food & Diet: <span id="weeklyFoodCarbon">0.00 kg CO2e</span></li>
+                        <li>Home Energy Usage: <span id="weeklyEnergyCarbon">0.00 kg CO2e</span></li>
+                        <li>Consumption & Lifestyle: <span id="weeklyLifestyleCarbon">0.00 kg CO2e</span></li>
+                    </ul>
+                </div>
+            </div>
+ 
+            <div class="monthly-carbon-summary-section grid-area-monthly-summary">
+                <h2>Monthly Carbon Footprint</h2>
+                <p>Select Month: <input type="month" id="monthSelector"></p>
+                <div id="monthlySummaryDetails">
+                    <p>Total for <span id="selectedMonthDisplay">Current Month</span>: <strong id="monthlyCarbonTotal">0.00 kg CO2e</strong></p>
+                    <div class="chart-container">
+                        <canvas id="monthlyCarbonBarChart"></canvas>
+                    </div>
+                    <h3>Breakdown by Category:</h3>
+                    <ul id="monthlyCategoryBreakdown">
+                        <li>Transportation: <span id="monthlyTransportCarbon">0.00 kg CO2e</span></li>
+                        <li>Household: <span id="monthlyHouseholdCarbon">0.00 kg CO2e</span></li>
+                        <li>Food & Diet: <span id="monthlyFoodCarbon">0.00 kg CO2e</span></li>
+                        <li>Home Energy Usage: <span id="monthlyEnergyCarbon">0.00 kg CO2e</span></li>
+                        <li>Consumption & Lifestyle: <span id="monthlyLifestyleCarbon">0.00 kg CO2e</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+ 
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CoZero. All rights reserved.</p>
+        </div>
+    </footer>
+    <script type="module" src="js/activity.js"></script>
+</body>
+</html>

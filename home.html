@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | CoZero</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sreda&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/home-light-dark-mode.css">
+</head>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    
+    // NOTE: For Canvas environment, __firebase_config and __app_id are provided globally.
+    // Replace hardcoded config with global variables if this is for a Canvas app.
+    const firebaseConfig = {
+        apiKey: "AIzaSyA2ydl9-68gA-_3UXpxEJY6CfvTmCMPsLo",
+        authDomain: "cozero-tracker.firebaseapp.com",
+        projectId: "cozero-tracker",
+        storageBucket: "cozero-tracker.firebasestorage.app",
+        messagingSenderId: "178790925784",
+        appId: "1:178790925784:web:f3b6d1a9e1eeadee5adead",
+        measurementId: "G-PQEWJ0RVCW"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const profileUsername = document.getElementById("profileUsername");
+
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            console.log("✅ User is signed in:", user.email);
+
+            const docRef = doc(db, "users", user.uid);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                console.log("✅ User data from Firestore:", data);
+                profileUsername.textContent = data.username || "User";
+            } else {
+                console.warn("⚠️ No Firestore doc found for this user.");
+                profileUsername.textContent = "Unknown";
+            }
+        } else {
+            console.warn("⚠️ No user is signed in.");
+            window.location.href = "login.html";
+        }
+
+        const logoutButton = document.getElementById("logoutButton");
+        // Check if logoutButton exists before adding event listener
+        if (logoutButton) {
+            logoutButton.addEventListener("click", (e) => {
+                e.preventDefault(); // Prevent default link behavior
+                signOut(auth)
+                    .then(() => {
+                        console.log("✅ User signed out successfully.");
+                        window.location.href = "index.html"; // Redirect to login after logout
+                    })
+                    .catch((error) => {
+                        console.error("❌ Error signing out:", error);
+                    });
+            });
+        }
+    });
+</script>
+
+<body class=""> 
+    <header class="site-header">
+        <div class="header-wrapper">
+            <div class="header-left">
+                <div class="site-logo-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 4C10 4 8 6 8 8C8 10 12 14 12 14C12 14 16 10 16 8C16 6 14 4 12 4Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <a href="home.html" class="logo-link">
+                    <h1 class="logo">CoZero</h1>
+                </a>
+            </div>
+            
+            <div class="header-right">
+                <nav class="header-nav">
+                    <a href="home.html" class="nav-link current-page">Home</a>
+                    <a href="activity.html" class="nav-link">Activity</a>
+                    <a href="insights.html" class="nav-link">Dashboard</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </nav>
+
+                <a href="notif.html" class="notification-button" id="notification-link">
+                    <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </a>
+
+                <button id="profileDropdownButton" class="profile-button">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="profile-name" id="profileUsername">Loading...</span>
+                    <svg class="icon-svg dropdown-arrow" viewBox="0 0 24 24">
+                        <path d="M6 9l6 6 6-6"></path>
+                    </svg>
+                </button>
+                
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+
+                <div id="profileDropdown" class="profile-dropdown">
+                    <a href="#" class="dropdown-item">Your Profile</a>
+                    <a href="settings.html" class="dropdown-item">Settings</a>
+                    <a href="#" id="logoutButton" class="dropdown-item">Log out</a>
+                </div>
+            </div>
+        </div>
+        <div class="vaporwave-line"></div>
+    </header>
+    
+    <main class="main-content-area">
+        <div class="home-title-container">
+            <h1 id="homeTitle" class="home-title">Home</h1>
+        </div>
+        
+        <div class="welcome-message-container">
+            <h2 class="welcome-heading">Welcome to CoZero</h2>
+            <p class="welcome-subheading-1">TRACK YOUR DAILY CARBON IMPACT</p>
+            <p class="welcome-subheading-2">One Log at a Time. One Planet to Save.</p>
+        </div>
+    </main>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CoZero. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="js/home-theme-toggle.js"></script>
+    <!-- The duplicate profile dropdown JavaScript block has been removed from here. -->
+    
+</body>
+</html>

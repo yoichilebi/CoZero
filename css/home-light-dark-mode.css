@@ -1,0 +1,169 @@
+/*
+ * home-light-dark-mode.css
+ * This file contains styles that override the default (dark mode) styles for light mode on the homepage.
+ * Design Principle: Light grey background, dark grey text, vibrant coral accents - Consistent with index.html
+ */
+
+/* Light Mode Body & Global Overrides */
+body.light-mode {
+  color: #333333; /* Darker text for light mode - Consistent */
+  background-color: #f0f2f5; /* Light grey background for light mode - Consistent */
+}
+
+/* Light Mode Header Overrides */
+body.light-mode .site-header {
+  background-color: rgba(255, 255, 255, 0.9); /* Lighter, more transparent header - Consistent */
+  border-bottom: 1px solid rgba(255, 107, 107, 0.1); /* Subtle coral border - Consistent */
+}
+
+/* Light Mode Site Logo Icon */
+body.light-mode .site-logo-icon .icon-svg {
+    stroke: #ff6b6b; /* Coral for logo outline */
+    fill: #ff6b6b; /* Coral for logo fill */
+}
+
+body.light-mode .logo {
+  color: #ff6b6b; /* Vibrant coral for logo in light mode - Consistent */
+  text-shadow: 0 0 8px rgba(255, 107, 107, 0.4); /* Consistent */
+}
+
+body.light-mode .vaporwave-line {
+  background: linear-gradient(90deg, transparent, #ff6b6b, transparent); /* Coral vapor wave line - Consistent */
+}
+
+/* Light Mode Navigation Links */
+body.light-mode .header-nav .nav-link {
+  color: #ff6b6b; /* Vibrant coral link color - Consistent */
+}
+
+body.light-mode .header-nav .nav-link::after {
+  background: #ff6b6b; /* Vibrant coral underline - Consistent */
+}
+
+body.light-mode .nav-link:hover {
+  color: #cc0000; /* Darker red on hover - Consistent */
+}
+
+/* Light Mode Theme Toggle Overrides */
+body.light-mode .theme-toggle {
+  background: rgba(255, 107, 107, 0.08); /* Consistent */
+  border: 1px solid rgba(255, 107, 107, 0.3); /* Consistent */
+  color: #ff6b6b; /* Vibrant coral icon color - Consistent */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Consistent */
+}
+
+body.light-mode .theme-toggle:hover {
+  background: rgba(255, 107, 107, 0.18); /* Consistent */
+  border-color: #cc0000; /* Consistent */
+  color: #cc0000; /* Consistent */
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.4); /* Consistent */
+}
+
+/* Light Mode Icons (Notification, Profile) */
+body.light-mode .icon-svg {
+    stroke: #ff6b6b; /* Coral for icons - Consistent */
+}
+body.light-mode .notification-button,
+body.light-mode .profile-button {
+  background: rgba(255, 107, 107, 0.08); /* Consistent */
+  border: 1px solid rgba(255, 107, 107, 0.3); /* Consistent */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Consistent */
+}
+body.light-mode .notification-button:hover,
+body.light-mode .profile-button:hover {
+  background: rgba(255, 107, 107, 0.18); /* Consistent */
+  border-color: #cc0000; /* Consistent */
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.4); /* Consistent */
+}
+body.light-mode .notification-button:hover .icon-svg,
+body.light-mode .profile-button:hover .icon-svg {
+    stroke: #cc0000; /* Consistent */
+}
+
+body.light-mode .profile-name {
+    color: #ff6b6b; /* Consistent */
+}
+
+body.light-mode .dropdown-arrow {
+    stroke: #ff6b6b; /* Consistent */
+}
+body.light-mode .profile-button:hover .dropdown-arrow {
+    stroke: #cc0000; /* Consistent */
+}
+
+
+/* Light Mode Profile Dropdown */
+body.light-mode .profile-dropdown {
+    background-color: rgba(255, 255, 255, 0.9); /* Consistent */
+    border: 1px solid rgba(255, 107, 107, 0.3); /* Consistent */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Consistent */
+}
+
+body.light-mode .dropdown-item {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #333333; /* Consistent dark text */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    border-radius: 0.5rem;
+}
+
+body.light-mode .dropdown-item:hover {
+    background-color: rgba(255, 107, 107, 0.15); /* Consistent */
+    color: #ff6b6b; /* Consistent */
+}
+
+/* Light Mode Main Content Titles */
+body.light-mode .home-title {
+  font-family: 'Sreda', 'JetBrains Mono', monospace;
+  color: #ff6b6b; /* Coral for headings - Consistent */
+  font-size: 3.8rem; /* Increased size to match impact of index.html hero text */
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(255, 107, 107, 0.7); /* Stronger glow - Consistent */
+}
+
+body.light-mode .welcome-heading {
+    font-family: 'Sreda', 'JetBrains Mono', monospace;
+    color: #ff6b6b; /* Coral for headings - Consistent */
+    font-size: 3.2rem; /* Increased size for strong impact */
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px rgba(255, 107, 107, 0.6); /* Stronger glow - Adjusted slightly for hierarchy */
+}
+
+body.light-mode .welcome-subheading-1 {
+    font-family: 'JetBrains Mono', monospace;
+    color: #555555; /* Darker text for contrast - Consistent */
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    letter-spacing: 1px;
+}
+
+body.light-mode .welcome-subheading-2 {
+    font-family: 'Inter', sans-serif;
+    color: #555555; /* Darker text for contrast - Consistent */
+    font-size: 1.1rem;
+}
+
+/* Light Mode Footer Overrides */
+body.light-mode .site-footer {
+  background-color: #d0d2d5; /* Distinct, slightly darker grey for footer - Consistent */
+  color: #666; /* Softer grey footer text - Consistent */
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Adjustments for Light Mode */
+@media (max-width: 768px) {
+  body.light-mode .home-title {
+    font-size: 2.8rem; /* Adjusted for smaller screens */
+  }
+  body.light-mode .welcome-heading {
+    font-size: 2.2rem; /* Adjusted for smaller screens */
+  }
+  body.light-mode .profile-dropdown {
+    right: 15px; /* Adjust dropdown position for smaller screens */
+  }
+}

@@ -1,0 +1,1016 @@
+/* General Body and Layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Updated to match home.css */
+    background-color: #1a1a2e; /* Deep indigo background - Consistent with home.css */
+    color: #e0e0e0; /* Soft off-white for main text - Consistent with home.css */
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease; /* Smoother transitions as in home.css */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Prevent horizontal scrolling, consistent with home.css */
+}
+
+body.light-mode {
+    /* Updated to match home-light-dark-mode.css */
+    background-color: #f0f2f5; /* Light grey background for light mode - Consistent with home-light-dark-mode.css */
+    color: #333333; /* Darker text for light mode - Consistent with home-light-dark-mode.css */
+}
+
+.container {
+    max-width: 1200px; /* Max width for header/footer */
+    margin: 0 auto;
+    /* Padding for container is handled by header-wrapper padding or main content sections */
+    /* Removed padding: 0 20px; here as header-wrapper handles it */
+}
+
+.content-wrapper {
+    flex: 1; /* Allows main content to grow and push footer down */
+    display: flex;
+    justify-content: center;
+    padding: 30px 25px; /* Reintroduced 25px right padding for consistency with main content areas */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Site Logo Icon (copied directly from home.css) */
+.site-logo-icon {
+    width: 32px; /* Adjust size as needed for your logo */
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.site-logo-icon .icon-svg {
+    width: 100%;
+    height: 100%;
+    stroke: #00e6e6; /* Consistent with other icons */
+    fill: #00e6e6; /* Fill for the leaf part of the logo */
+}
+/* Light Mode Site Logo Icon (copied directly from home-light-dark-mode.css) */
+body.light-mode .site-logo-icon .icon-svg {
+    stroke: #ff6b6b; /* Coral for logo outline */
+    fill: #ff6b6b; /* Coral for logo fill */
+}
+
+
+/* Typography Enhancements */
+h1, h2, h3 {
+    font-family: 'Sreda', 'JetBrains Mono', monospace; /* Consistent fonts */
+    letter-spacing: 0.5px;
+}
+
+p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+}
+/* Logo (CoZero text) - Futuristic Font (copied directly from home.css) */
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00e6e6; /* Vibrant electric cyan - Consistent */
+    text-shadow: 0 0 8px rgba(0, 230, 230, 0.4); /* Subtle glow - Consistent */
+}
+/* Light mode logo (copied directly from home-light-dark-mode.css) */
+body.light-mode .logo {
+    color: #ff6b6b; /* Vibrant coral for logo in light mode - Consistent */
+    text-shadow: 0 0 8px rgba(255, 107, 107, 0.4); /* Consistent */
+}
+
+/* Styling for the clickable logo link (copied directly from home.css) */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+.logo-link:hover .logo {
+    opacity: 0.8;
+    text-shadow: 0 0 12px rgba(0, 230, 230, 0.7);
+}
+/* Light mode logo link hover (copied directly from home-light-dark-mode.css) */
+body.light-mode .logo-link:hover .logo {
+    opacity: 0.8;
+    text-shadow: 0 0 12px rgba(255, 107, 107, 0.7); /* Adjusted for light mode coral */
+}
+
+/* Header (copied and adapted from home.css) */
+.site-header {
+    width: 100%;
+    position: relative; /* Consistent with home.css */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px; /* Only top padding here */
+    background-color: rgba(26, 26, 46, 0.9); /* Slightly transparent background for glass effect - Consistent */
+    backdrop-filter: blur(12px); /* Stronger blur - Consistent */
+    border-bottom: 1px solid rgba(0, 230, 230, 0.1); /* Subtle bottom border - Consistent */
+    transition: background-color 0.4s ease, color 0.4s ease;
+    z-index: 10;
+}
+/* Light Mode Header Overrides (copied directly from home-light-dark-mode.css) */
+body.light-mode .site-header {
+    background-color: rgba(255, 255, 255, 0.9); /* Lighter, more transparent header - Consistent */
+    border-bottom: 1px solid rgba(255, 107, 107, 0.1); /* Subtle coral border - Consistent */
+}
+
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 15px;
+    padding-left: 25px; /* Consistent with home.css */
+    padding-right: 25px; /* Consistent with home.css */
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+/* Animated Vaporwave Line (copied directly from home.css) */
+.vaporwave-line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00e6e6, transparent); /* Vibrant electric cyan - Consistent */
+    animation: vaporWave 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    opacity: 0.7;
+    margin-top: 5px;
+}
+/* Light Mode Vaporwave Line (copied directly from home-light-dark-mode.css) */
+body.light-mode .vaporwave-line {
+    background: linear-gradient(90deg, transparent, #ff6b6b, transparent); /* Coral vapor wave line - Consistent */
+}
+
+@keyframes vaporWave {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateX(100%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0.4;
+    }
+}
+
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Increased gap between elements in header-right, consistent with home.css */
+}
+
+.header-left {
+    justify-content: flex-start;
+    margin-top: 0;
+    gap: 10px; /* Space between logo icon and CoZero text, consistent with home.css */
+}
+
+.header-right {
+    justify-content: flex-end;
+    margin-top: 0;
+}
+
+/* Navigation Links in Header (copied directly from home.css) */
+.header-nav {
+    display: flex;
+    gap: 20px; /* Space between nav links */
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.header-nav .nav-link {
+    text-decoration: none;
+    color: #00e6e6; /* Vibrant electric cyan link color - Consistent */
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+/* Light Mode Navigation Links (copied directly from home-light-dark-mode.css) */
+body.light-mode .header-nav .nav-link {
+    color: #ff6b6b; /* Vibrant coral link color - Consistent */
+}
+
+.header-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background: #00e6e6; /* Vibrant electric cyan - Consistent */
+    transition: width 0.3s ease;
+}
+/* Light Mode Navigation Underline (copied directly from home-light-dark-mode.css) */
+body.light-mode .header-nav .nav-link::after {
+    background: #ff6b6b; /* Vibrant coral underline - Consistent */
+}
+
+.header-nav .nav-link:hover::after,
+.header-nav .nav-link.current-page::after { /* Current page also has underline */
+    width: 100%;
+}
+
+.header-nav .nav-link:hover {
+    color: #00ff00; /* Brighter green on hover - Consistent */
+}
+/* Light Mode Navigation Hover (copied directly from home-light-dark-mode.css) */
+body.light-mode .header-nav .nav-link:hover {
+    color: #cc0000; /* Darker red on hover - Consistent */
+}
+
+.header-nav .nav-link.current-page { /* Style for the active page */
+    color: #00e6e6; /* Cyan for current page */
+    font-weight: 700;
+}
+/* Light Mode Current Page (copied directly from home-light-dark-mode.css) */
+body.light-mode .header-nav .nav-link.current-page {
+    color: #ff6b6b; /* Coral for light mode current page */
+}
+
+
+/* Theme Toggle Button (copied directly from home.css and home-light-dark-mode.css) */
+.theme-toggle {
+    background: rgba(0, 230, 230, 0.08); /* Consistent */
+    border: 1px solid rgba(0, 230, 230, 0.3); /* Consistent */
+    padding: 10px 16px;
+    border-radius: 15px;
+    font-size: 1.3rem;
+    color: #00e6e6; /* Vibrant electric cyan icon color - Consistent */
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    z-index: 11;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Consistent */
+    transition: all 0.3s ease;
+}
+body.light-mode .theme-toggle {
+    background: rgba(255, 107, 107, 0.08); /* Consistent */
+    border: 1px solid rgba(255, 107, 107, 0.3); /* Consistent */
+    color: #ff6b6b; /* Vibrant coral icon color - Consistent */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Consistent */
+}
+
+.theme-toggle:hover {
+    background: rgba(0, 230, 230, 0.18); /* Consistent */
+    border-color: #00ff00; /* Consistent */
+    color: #00ff00; /* Consistent */
+    box-shadow: 0 0 20px rgba(0, 230, 230, 0.7); /* Consistent */
+}
+body.light-mode .theme-toggle:hover {
+    background: rgba(255, 107, 107, 0.18); /* Consistent */
+    border-color: #cc0000; /* Consistent */
+    color: #cc0000; /* Consistent */
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.4); /* Consistent */
+}
+
+/* Custom SVG icons for general use (copied directly from home.css and home-light-dark-mode.css) */
+.icon-svg {
+    width: 24px;
+    height: 24px;
+    stroke: #00e6e6; /* Vibrant electric cyan for icons */
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none; /* Default to no fill for general icons */
+    transition: stroke 0.3s ease; /* Smooth transition for icon color */
+}
+body.light-mode .icon-svg {
+    stroke: #ff6b6b; /* Coral for icons - Consistent */
+}
+
+
+/* Notification Button (copied directly from home.css and home-light-dark-mode.css) */
+.notification-button {
+    background: rgba(0, 230, 230, 0.08); /* Consistent */
+    border: 1px solid rgba(0, 230, 230, 0.3); /* Consistent */
+    padding: 10px 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Consistent */
+    transition: all 0.3s ease;
+}
+body.light-mode .notification-button {
+    background: rgba(255, 107, 107, 0.08); /* Consistent */
+    border: 1px solid rgba(255, 107, 107, 0.3); /* Consistent */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Consistent */
+}
+.notification-button:hover {
+    background: rgba(0, 230, 230, 0.18); /* Consistent */
+    border-color: #00ff00; /* Consistent */
+    box-shadow: 0 0 20px rgba(0, 230, 230, 0.7); /* Consistent */
+}
+body.light-mode .notification-button:hover {
+    background: rgba(255, 107, 107, 0.18); /* Consistent */
+    border-color: #cc0000; /* Consistent */
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.4); /* Consistent */
+}
+.notification-button .icon-svg {
+    stroke: #00e6e6;
+}
+body.light-mode .notification-button .icon-svg {
+    stroke: #ff6b6b;
+}
+.notification-button:hover .icon-svg {
+    stroke: #00ff00;
+}
+body.light-mode .notification-button:hover .icon-svg {
+    stroke: #cc0000;
+}
+
+/* Profile Button (copied directly from home.css and home-light-dark-mode.css) */
+.profile-area { /* Added for dropdown positioning context */
+    position: relative; /* Ensure this is here for dropdown positioning */
+}
+.profile-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 10px 16px;
+    border-radius: 15px;
+    background: rgba(0, 230, 230, 0.08);
+    border: 1px solid rgba(0, 230, 230, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+body.light-mode .profile-button {
+    background: rgba(255, 107, 107, 0.08);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.profile-button:hover {
+    background: rgba(0, 230, 230, 0.18);
+    border-color: #00ff00;
+    box-shadow: 0 0 20px rgba(0, 230, 230, 0.7);
+}
+body.light-mode .profile-button:hover {
+    background: rgba(255, 107, 107, 0.18);
+    border-color: #cc0000;
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+}
+.profile-button .icon-svg {
+    stroke: #00e6e6;
+}
+body.light-mode .profile-button .icon-svg {
+    stroke: #ff6b6b;
+}
+.profile-button:hover .icon-svg {
+    stroke: #00ff00;
+}
+body.light-mode .profile-button:hover .icon-svg {
+    stroke: #cc0000;
+}
+
+
+.profile-name {
+    color: #00e6e6;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    display: none; /* Hidden by default */
+}
+body.light-mode .profile-name {
+    color: #ff6b6b; /* Consistent */
+}
+
+/* Responsive breakpoint for profile name (copied directly from home.css) */
+@media (min-width: 640px) {
+    .profile-name {
+        display: block; /* Show on larger screens */
+    }
+}
+
+.dropdown-arrow {
+    width: 1rem;
+    height: 1rem;
+    stroke: #00e6e6;
+}
+body.light-mode .dropdown-arrow {
+    stroke: #ff6b6b;
+}
+.profile-button:hover .dropdown-arrow {
+    stroke: #00ff00;
+}
+body.light-mode .profile-button:hover .dropdown-arrow {
+    stroke: #cc0000;
+}
+
+
+/* Profile Dropdown styles (copied directly from home.css and home-light-dark-mode.css) */
+.profile-dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 95px; /* Aligned with the header content's right padding */
+    background-color: rgba(26, 26, 46, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 230, 230, 0.3);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    min-width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s;
+    z-index: 60;
+}
+body.light-mode .profile-dropdown {
+    background-color: rgba(255, 255, 255, 0.9); /* Consistent */
+    border: 1px solid rgba(255, 107, 107, 0.3); /* Consistent */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Consistent */
+}
+
+.profile-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    border-radius: 0.5rem;
+}
+body.light-mode .dropdown-item {
+    color: #333333; /* Consistent dark text */
+}
+
+.dropdown-item:hover {
+    background-color: rgba(0, 230, 230, 0.15);
+    color: #00e6e6;
+}
+body.light-mode .dropdown-item:hover {
+    background-color: rgba(255, 107, 107, 0.15); /* Consistent */
+    color: #ff6b6b; /* Consistent */
+}
+
+
+/* Dashboard Grid Layout (unchanged) */
+.dashboard-grid {
+    display: grid;
+    /* Define areas for larger screens */
+    grid-template-areas:
+        "form recent-activities daily-summary"
+        "form weekly-summary monthly-summary";
+    grid-template-columns: 1fr 1fr 1fr; /* Three columns, equal width */
+    grid-template-rows: auto auto; /* Two rows, auto height */
+    gap: 20px; /* Space between grid items */
+    max-width: 1400px; /* Maximize width, but still contain */
+    width: 100%;
+    margin: 0 auto; /* Center the grid */
+}
+
+.grid-area-form {
+    grid-area: form;
+    min-width: 300px; /* Ensure form doesn't get too squished */
+}
+
+.grid-area-recent-activities {
+    grid-area: recent-activities;
+}
+
+.grid-area-daily-summary {
+    grid-area: daily-summary;
+}
+
+.grid-area-weekly-summary {
+    grid-area: weekly-summary;
+}
+
+.grid-area-monthly-summary {
+    grid-area: monthly-summary;
+}
+
+/* Section/Tile Styling (unchanged, kept your existing styles as they are not header-related) */
+.activity-input-section,
+.daily-carbon-summary-section,
+.weekly-carbon-summary-section,
+.monthly-carbon-summary-section,
+.activity-list-section {
+    background-color: #1F2937; /* Main tile background from home page cards */
+    padding: 25px;
+    border-radius: 12px; /* Softer rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid #374151; /* Subtle border from home page cards */
+    display: flex; /* Use flex for internal content layout */
+    flex-direction: column;
+    height: 100%; /* Ensure tiles fill their grid area */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    overflow: hidden; /* Hide overflow for charts/lists */
+}
+
+body.light-mode .activity-input-section,
+body.light-mode .daily-carbon-summary-section,
+body.light-mode .weekly-carbon-summary-section,
+body.light-mode .monthly-carbon-summary-section,
+body.light-mode .activity-list-section {
+    background-color: #FFFFFF; /* Pure white for light mode tiles */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #D1D5DB; /* Light grey border for light mode */
+}
+
+/* Dark Mode Headings (h1, h2) to Cyan/Teal (unchanged) */
+.dashboard-grid h1,
+.dashboard-grid h2 {
+    color: #2DD4BF; /* Vibrant cyan/teal for headings */
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-shadow: 0 0 3px rgba(45, 212, 191, 0.4);
+}
+
+body.light-mode .dashboard-grid h1,
+body.light-mode .dashboard-grid h2 {
+    color: #ff6b6b; /* NEW: Darker red for light mode headings */
+    text-shadow: none;
+}
+
+/* Input Group Styling (unchanged) */
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #D1D5DB; /* Soft light grey for labels */
+}
+
+body.light-mode .input-group label {
+    color: #374151; /* Dark grey for light mode labels */
+}
+
+.input-group input[type="date"],
+.input-group input[type="week"],
+.input-group input[type="month"],
+.input-group input[type="number"],
+.input-group input[type="text"],
+.input-group select {
+    padding: 12px 15px;
+    border: 1px solid #374151; /* Dark grey border */
+    border-radius: 6px;
+    background-color: #111827; /* Darker input background */
+    color: #D1D5DB;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+/* Style for the calendar icon within date inputs */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    /* Inverts the colors of the icon, effectively turning black to white */
+    filter: invert(1);
+    /* Make it a pointer on hover for better UX */
+    cursor: pointer;
+}
+
+body.light-mode .input-group input[type="date"],
+body.light-mode .input-group input[type="week"],
+body.light-mode .input-group input[type="month"],
+body.light-mode .input-group input[type="number"],
+body.light-mode .input-group input[type="text"],
+body.light-mode .input-group select {
+    background-color: #E5E7EB; /* Light grey for light mode input background */
+    border-color: #D1D5DB; /* Light grey border */
+    color: #374151;
+}
+body.light-mode input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: none; /* No filter, reverts to original icon color (usually black/dark grey) */
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #2DD4BF; /* Highlight focus with vibrant cyan/teal */
+    box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.3);
+}
+
+body.light-mode .input-group input:focus,
+body.light-mode .input-group select:focus {
+    border-color: #ff6b6b; /* NEW: Vibrant red for light mode focus highlight */
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3); /* NEW: Shadow matching the new red */
+}
+
+.category-fields {
+    display: none; /* Hidden by default */
+    padding: 10px 0;
+    border-top: 1px dashed #374151; /* Dark grey dashed border */
+    margin-top: 15px;
+    padding-top: 20px;
+}
+
+.category-fields.active {
+    display: block; /* Shown when active */
+}
+
+body.light-mode .category-fields {
+    border-top: 1px dashed #D1D5DB; /* Light grey dashed border */
+}
+
+/* Buttons (unchanged, kept your existing styles as they are not header-related) */
+.log-button {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #2DD4BF; /* Vibrant cyan/teal for button */
+    color: #111827; /* Dark text on vibrant button */
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 10px rgba(107, 245, 255, 0.2);
+    margin-top: auto; /* Pushes button to bottom of form */
+}
+
+.log-button:hover {
+    background-color: #6EE7B7; /* Lighter cyan/teal on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(45, 212, 191, 0.4);
+}
+
+.log-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+body.light-mode .log-button {
+    background-color: #ff6b6b; /* NEW: Vibrant red for light mode button */
+    color: #FFFFFF; /* White text on vibrant button */
+    box-shadow: 0 5px 10px rgba(255, 107, 107, 0.2); /* NEW: Shadow matching the new red */
+}
+
+body.light-mode .log-button:hover {
+    background-color: #e65c5c; /* Slightly darker red on hover for light mode button */
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4); /* NEW: Shadow matching the new red */
+}
+
+/* Carbon Summary Sections (unchanged) */
+.daily-carbon-summary-section p,
+.weekly-carbon-summary-section p,
+.monthly-carbon-summary-section p {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: #D1D5DB;
+}
+
+body.light-mode .daily-carbon-summary-section p,
+body.light-mode .weekly-carbon-summary-section p,
+body.light-mode .monthly-carbon-summary-section p {
+    color: #374151;
+}
+
+/* Dark Mode strong (carbon values) to Cyan/Teal (unchanged) */
+.daily-carbon-summary-section strong,
+.weekly-carbon-summary-section strong,
+.monthly-carbon-summary-section strong {
+    color: #2DD4BF; /* Vibrant cyan/teal for carbon values */
+    font-size: 1.2em;
+    text-shadow: 0 0 3px rgba(45, 212, 191, 0.5);
+}
+
+body.light-mode .daily-carbon-summary-section strong,
+body.light-mode .weekly-carbon-summary-section strong,
+body.light-mode .monthly-carbon-summary-section strong {
+    color: #ff6b6b; /* NEW: Darker red for light mode carbon values */
+    text-shadow: 0 0 3px rgba(212, 45, 45, 0.5);
+}
+
+/* Dark Mode h3 (subheadings) to Cyan/Teal (unchanged) */
+.weekly-carbon-summary-section h3,
+.monthly-carbon-summary-section h3 {
+    color: #2DD4BF; /* Vibrant cyan/teal for subheadings */
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+
+body.light-mode .weekly-carbon-summary-section h3,
+body.light-mode .monthly-carbon-summary-section h3 {
+    color: #ff6b6b; /* NEW: Darker red for light mode subheadings */
+}
+
+.weekly-carbon-summary-section ul,
+.monthly-carbon-summary-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.weekly-carbon-summary-section ul li,
+.monthly-carbon-summary-section ul li {
+    margin-bottom: 5px;
+    font-size: 0.95em;
+    color: #D1D5DB;
+}
+
+body.light-mode .weekly-carbon-summary-section ul li,
+body.light-mode .monthly-carbon-summary-section ul li {
+    color: #374151;
+}
+
+/* Chart Container Styling (unchanged) */
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 180px;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Activity List (unchanged) */
+.activity-list-section ul {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.activity-list-section ul::-webkit-scrollbar {
+    width: 8px;
+}
+.activity-list-section ul::-webkit-scrollbar-track {
+    background: #1F2937; /* Dark mode scrollbar track */
+    border-radius: 10px;
+}
+.activity-list-section ul::-webkit-scrollbar-thumb {
+    background: #2DD4BF; /* Dark mode scrollbar thumb */
+    border-radius: 10px;
+}
+body.light-mode .activity-list-section ul::-webkit-scrollbar-track {
+    background: #E5E7EB; /* Light mode scrollbar track */
+}
+body.light-mode .activity-list-section ul::-webkit-scrollbar-thumb {
+    background: #ff6b6b; /* NEW: Vibrant red for light mode scrollbar thumb */
+}
+
+
+.activity-list-section li {
+    background-color: #1F2937;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+body.light-mode .activity-list-section li {
+    background-color: #FFFFFF;
+    border: 1px solid #D1D5DB;
+}
+
+.activity-list-section li:hover {
+    background-color: #2F3D4F;
+    border-color: #2DD4BF; /* Cyan highlight on hover */
+}
+
+body.light-mode .activity-list-section li:hover {
+    background-color: #F3F4F6;
+    border-color: #ff6b6b; /* NEW: Vibrant red highlight on hover */
+}
+
+/* Dark Mode activity-date to Cyan/Teal (unchanged) */
+.activity-list-section li .activity-date {
+    font-weight: 600;
+    color: #2DD4BF; /* Cyan for dates */
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+body.light-mode .activity-list-section li .activity-date {
+    color: #cc0000; /* NEW: Darker red for light mode dates */
+}
+
+.activity-list-section li .activity-description {
+    flex-grow: 1;
+    color: #D1D5DB;
+    margin-right: 10px;
+    word-break: break-word;
+}
+
+body.light-mode .activity-list-section li .activity-description {
+    color: #374151;
+}
+
+.activity-actions {
+    flex-shrink: 0;
+    display: flex;
+    gap: 8px;
+}
+
+.activity-actions button {
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 0.9em;
+}
+
+.activity-actions button.edit-btn {
+    background-color: #60A5FA; /* Bright blue for edit */
+}
+
+.activity-actions button.edit-btn:hover {
+    background-color: #93C5FD;
+}
+
+.activity-actions button.delete-btn {
+    background-color: #EF4444; /* Vibrant red for delete */
+}
+
+.activity-actions button.delete-btn:hover {
+    background-color: #F87171;
+}
+
+body.light-mode .activity-actions button.edit-btn {
+    background-color: #ff6b6b; /* NEW: Vibrant red for light mode edit button */
+}
+body.light-mode .activity-actions button.edit-btn:hover {
+    background-color: #e65c5c;
+}
+body.light-mode .activity-actions button.delete-btn {
+    background-color: #cc0000; /* NEW: Darker red for light mode delete button */
+}
+body.light-mode .activity-actions button.delete-btn:hover {
+    background-color: #990000;
+}
+
+.no-activities {
+    text-align: center;
+    color: #9CA3AF;
+    font-style: italic;
+    padding: 20px;
+}
+
+body.light-mode .no-activities {
+    color: #6B7280;
+}
+
+
+
+/* --- Responsive Design (Media Queries) --- */
+
+/* For screens smaller than 1200px (e.g., larger tablets, small laptops) (unchanged) */
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-areas:
+            "form form"
+            "daily-summary recent-activities"
+            "weekly-summary monthly-summary";
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* For screens smaller than 768px (e.g., tablets, larger phones) (copied and adapted from home.css) */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-areas:
+            "form"
+            "daily-summary"
+            "recent-activities"
+            "weekly-summary"
+            "monthly-summary";
+        grid-template-columns: 1fr;
+        gap: 15px;
+        /* padding: 0 10px; <-- Removed, .content-wrapper handles this */
+    }
+
+    .content-wrapper {
+        padding: 20px 15px; /* Adjusted to 15px to match header-wrapper */
+    }
+
+    .activity-log-container h1,
+    .dashboard-grid h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .activity-input-section,
+    .daily-carbon-summary-section,
+    .weekly-carbon-summary-section,
+    .monthly-carbon-summary-section,
+    .activity-list-section {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .input-group label {
+        font-size: 0.9em;
+    }
+
+    .input-group input,
+    .input-group select,
+    .log-button {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    .activity-list-section ul {
+        max-height: 300px;
+    }
+
+    .activity-list-section li {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px;
+    }
+
+    .activity-list-section li .activity-description {
+        margin-bottom: 10px;
+    }
+
+    .activity-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    /* Styles from home.css for responsiveness - copied directly */
+    .header-nav { /* This hides the main nav on smaller screens */
+        display: none;
+    }
+    .header-wrapper {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .header-right {
+        gap: 10px;
+    }
+    .theme-toggle, .notification-button, .profile-button {
+        padding: 8px 12px;
+        font-size: 1rem;
+    }
+    .profile-dropdown {
+        right: 15px; /* Adjust dropdown position for smaller screens */
+    }
+}
+
+/* For very small screens (e.g., older/smaller phones) (unchanged) */
+@media (max-width: 480px) {
+    .site-header .logo {
+        font-size: 1.5em;
+    }
+    .theme-toggle {
+        font-size: 1.2em;
+    }
+    .activity-actions button {
+        padding: 6px 10px;
+        font-size: 0.85em;
+    }
+    .daily-carbon-summary-section p,
+    .weekly-carbon-summary-section p,
+    .monthly-carbon-summary-section p {
+        font-size: 1em;
+    }
+    .daily-carbon-summary-section strong,
+    .weekly-carbon-summary-section strong,
+    .monthly-carbon-summary-section strong {
+        font-size: 1.1em;
+    }
+}
+
+/* Rule from home.css for showing header nav on larger screens (copied directly) */
+@media (min-width: 769px) {
+    .header-nav {
+        display: flex;
+    }
+}
+
+/* Footer Styling (unchanged, kept your existing styles as they are not header-related) */
+.site-footer {
+    background-color: #1F2937;
+    color: #D1D5DB;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .site-footer {
+    background-color: #F8FAFC;
+    color: #374151;
+}

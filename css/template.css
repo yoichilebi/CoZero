@@ -1,0 +1,597 @@
+/* home.css */
+ 
+/* Base styles for the body */
+.body-layout {
+    font-family: 'Inter', sans-serif;
+    background-color: #000; /* Dark background for the entire page */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+ 
+/* Main content area with background image */
+.main-content-area {
+    /* Background image path adjusted based on your folder structure */
+    background-image: url('../assets/home/home.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-grow: 1; /* Allows it to take up available space */
+    min-height: calc(100vh - 64px - 40px); /* Full height minus nav and footer */
+    padding-top: 64px; /* Space for fixed nav */
+    position: relative;
+    z-index: 1;
+}
+ 
+/* Overlay for better text readability on background image */
+.main-content-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+    z-index: -1;
+}
+ 
+/* Custom SVG icons for better control and styling */
+.icon-svg {
+    width: 24px;
+    height: 24px;
+    stroke: white; /* Icons are white by default */
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+ 
+/* Navigation Bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent; /* Make header fully transparent */
+    backdrop-filter: none;         /* No blur unless you want it */
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    border-bottom: none;
+    z-index: 50;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+ 
+.navbar-left-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+ 
+/* Logo Placeholder (the green circle behind the new SVG logo) */
+.logo-placeholder {
+    width: 2rem; /* w-8 */
+    height: 2rem; /* h-8 */
+    background-color: #10B981; /* green-500 background for the logo */
+    border-radius: 9999px; /* Full rounded */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ensure image stays within bounds */
+}
+ 
+/* Style for the clickable CoZero text */
+.cozero-text-link {
+    text-decoration: none; /* Remove underline from link */
+    color: inherit; /* Inherit color from parent */
+}
+ 
+.cozero-text {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+ 
+.navbar-right-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+ 
+.notification-button {
+    padding: 0.5rem;
+    border-radius: 9999px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+.notification-button:hover {
+    background-color: rgba(107, 114, 128, 0.5);
+}
+.notification-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(75, 85, 99, 0.5);
+}
+ 
+.profile-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    background-color: transparent;
+    border: none;
+    transition: background-color 0.2s ease-in-out;
+}
+.profile-button:hover {
+    background-color: rgba(107, 114, 128, 0.5);
+}
+ 
+.profile-name {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    display: none;
+}
+ 
+/* Responsive breakpoint for profile name */
+@media (min-width: 640px) {
+    .profile-name {
+        display: block;
+    }
+}
+ 
+.dropdown-arrow {
+    width: 1rem;
+    height: 1rem;
+}
+
+.theme-toggle {
+    font-size: 1.3rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+ 
+/* Horizontal line for the header - always visible and distinct */
+.nav-header-line {
+    height: 1px; /* Line thickness */
+    background-color: white; /* Solid white line */
+    width: 100%; /* Always full width */
+    position: absolute;
+    bottom: 0; /* Position at the bottom of the relative navbar */
+    left: 0;
+    right: 0;
+}
+ 
+/* "Home" Title */
+.home-title-container {
+    position: absolute;
+    top: 5rem;
+    left: 1.5rem;
+    padding: 1rem;
+}
+ 
+.home-title {
+    color: #fff;
+    font-size: 1.875rem;
+    font-weight: bold;
+    transition: transform 0.3s ease-out;
+}
+ 
+/* Responsive breakpoints for home title */
+@media (min-width: 640px) {
+    .home-title-container {
+        left: 2.5rem;
+    }
+    .home-title {
+        font-size: 2.25rem;
+    }
+}
+@media (min-width: 768px) {
+    .home-title-container {
+        left: 4rem;
+    }
+    .home-title {
+        font-size: 3rem;
+    }
+}
+@media (min-width: 1024px) {
+    .home-title-container {
+        left: 5rem;
+    }
+}
+
+.vaporwave-line {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00e6e6, transparent);
+  animation: vaporWave 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  opacity: 0.7;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes vaporWave {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0.4;
+  }
+}
+
+ 
+body.menu-hovered .home-title {
+    transform: translateX(20px);
+}
+ 
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 64px;
+    left: -250px;
+    width: 250px;
+    height: calc(100% - 64px);
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    transition: left 0.3s ease-out;
+    z-index: 40;
+    padding-top: 1rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+}
+ 
+body.menu-hovered .sidebar {
+    left: 0;
+}
+ 
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+ 
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    border-radius: 0.5rem;
+    margin: 0.25rem 0.5rem;
+}
+ 
+.sidebar-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+ 
+.sidebar-link .icon-svg {
+    margin-right: 1rem;
+    width: 24px;
+    height: 24px;
+    stroke: #ffffff;      /* White outline for icons */
+    fill: none;           /* Prevent filled background */
+    background: none;     /* Remove background */
+    border-radius: 0;     /* No rounded box */
+    transition: stroke 0.3s ease-in-out;
+}
+
+
+ 
+.sidebar-link:hover .icon-svg {
+    stroke: #00ff00; /* Green on hover */
+}
+
+ 
+/* Profile Dropdown styles */
+.profile-dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    min-width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s;
+    z-index: 60;
+}
+ 
+.profile-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+ 
+.dropdown-item {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    border-radius: 0.5rem;
+}
+ 
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+ 
+:root {
+    /* Dark Mode Defaults (from styles.css) */
+    --main-bg-color: #1a1a2e;
+    --text-color-primary: #e0e0e0;
+    --accent-color: #00e6e6; /* Vibrant electric cyan */
+    --accent-shadow: rgba(0, 230, 230, 0.3);
+    --hero-title-color: #00e6e6;
+    --hero-title-shadow: rgba(0, 230, 230, 0.5);
+    --heading-color: #00e6e6;
+    --text-color-secondary: #b0b0b0; /* Slightly desaturated text for feature cards */
+    --border-color-subtle: rgba(255, 255, 255, 0.08); /* Subtle border for glassmorphism */
+    --card-bg-dark: rgba(255, 255, 255, 0.03);
+    --card-shadow-dark: rgba(0, 0, 0, 0.3);
+ 
+    /* Light Mode Overrides (from light-dark-mode.css) */
+    /* These will be applied when body.light-mode is active */
+    --light-main-bg-color: #f0f2f5;
+    --light-text-color-primary: #333333;
+    --light-accent-color: #ff6b6b; /* Vibrant coral */
+    --light-accent-shadow: rgba(255, 107, 107, 0.3);
+    --light-hero-title-color: #ff6b6b;
+    --light-hero-title-shadow: rgba(255, 107, 107, 0.5);
+    --light-heading-color: #ff6b6b;
+    --light-text-color-secondary: #555555;
+    --light-border-color-subtle: rgba(0, 0, 0, 0.1);
+    --light-card-bg-light: rgba(255, 255, 255, 0.6);
+    --light-card-shadow-light: rgba(0, 0, 0, 0.15);
+}
+ 
+/* Apply light mode variables */
+body.light-mode {
+    --main-bg-color: var(--light-main-bg-color);
+    --text-color-primary: var(--light-text-color-primary);
+    --accent-color: var(--light-accent-color);
+    --accent-shadow: var(--light-accent-shadow);
+    --hero-title-color: var(--light-hero-title-color);
+    --hero-title-shadow: var(--light-hero-title-shadow);
+    --heading-color: var(--light-heading-color);
+    --text-color-secondary: var(--light-text-color-secondary);
+    --border-color-subtle: var(--light-border-color-subtle);
+    --card-bg-dark: var(--light-card-bg-light); /* Use light card background in light mode */
+    --card-shadow-dark: var(--light-card-shadow-light); /* Use light card shadow in light mode */
+}
+ 
+ 
+/* Main container for the About page content */
+.about-page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Space between the new section boxes */
+    margin-top: 40px; /* Space from header */
+    margin-bottom: 40px; /* Space from footer */
+}
+ 
+/* Style for each individual section box */
+.about-section-box {
+    padding: 40px; /* Padding inside each box */
+    background: var(--card-bg-dark); /* Use variable for card background */
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color-subtle); /* Use variable for subtle border */
+    border-radius: 18px; /* Rounded corners for the boxes */
+    box-shadow: 0 6px 20px var(--card-shadow-dark); /* Shadow for depth */
+    color: var(--text-color-primary); /* Ensure text color is primary */
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+/* Specific styling for the intro box if needed, though default will apply */
+.intro-box h1 {
+    font-size: 2.8rem;
+    color: var(--hero-title-color); /* Use the hero title color variable */
+    text-shadow: 0 0 10px var(--hero-title-shadow);
+    margin-bottom: 1em;
+    text-align: center; /* Center the main title */
+}
+ 
+.about-section-box h2 {
+    font-size: 2.2rem;
+    color: var(--heading-color); /* Use a general heading color variable */
+    border-bottom: 2px solid var(--border-color-subtle); /* Use a subtle border color variable */
+    padding-bottom: 8px;
+    margin-top: 0; /* Remove top margin as boxes provide separation */
+    margin-bottom: 1em;
+}
+ 
+/* Paragraphs within the about container */
+.about-section-box p {
+    font-size: 1.05rem;
+    color: var(--text-color-secondary); /* Use a secondary text color variable */
+    margin-bottom: 1em;
+}
+ 
+/* List items */
+.about-section-box ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5em;
+}
+ 
+.about-section-box ul li {
+    margin-bottom: 0.8em;
+    padding-left: 1.8em;
+    position: relative;
+    font-size: 1.05em;
+    color: var(--text-color-secondary);
+}
+ 
+.about-section-box ul li:before {
+    content: '•';
+    color: var(--accent-color); /* Use the main accent color */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.8em;
+    position: absolute;
+}
+ 
+/* SDG Info Box - styled like a feature card but with a distinct accent */
+.sdg-info {
+    background: rgba(0, 230, 230, 0.05); /* Default to cyan for dark mode */
+    border-left: 5px solid var(--accent-color); /* Use accent color for border */
+    padding: 18px 25px;
+    margin-top: 2em;
+    border-radius: 8px;
+    font-size: 0.95em;
+    color: var(--text-color-secondary);
+    box-shadow: 0 4px 15px var(--accent-shadow); /* Use accent shadow */
+    transition: all 0.3s ease;
+}
+ 
+/* Team Grid - similar to grid-columns */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 2em;
+}
+ 
+/* Team Member Card - styled like a feature card */
+.team-member {
+    background: var(--card-bg-dark); /* Use variable for card background */
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color-subtle); /* Use variable for subtle border */
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 6px 20px var(--card-shadow-dark); /* Use variable for card shadow */
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+ 
+    /* New Flexbox styles for image and text alignment */
+    display: flex;
+    align-items: center; /* Vertically align image and text */
+    text-align: left; /* Align text content to the left within the flex container */
+    gap: 20px; /* Space between the image and the text */
+}
+ 
+.team-member:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-color); /* Accent color on hover */
+    box-shadow: 0 10px 30px var(--accent-shadow); /* Accent shadow on hover */
+}
+ 
+/* Style for the team member image */
+.team-member img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%; /* Makes the image circular */
+    flex-shrink: 0; /* Prevents the image from shrinking */
+    margin-bottom: 0; /* Override any previous margin */
+}
+ 
+/* Container for team member text to manage its layout */
+.team-member-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows the text content to take up available space */
+}
+ 
+.team-member h4 {
+    color: var(--accent-color); /* Accent color for name */
+    margin-bottom: 5px; /* Space below name */
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-top: 0; /* Remove default top margin */
+}
+ 
+.team-member p {
+    color: var(--text-color-secondary); /* Secondary text color for roles */
+    font-size: 0.95em;
+    margin-bottom: 0; /* Remove default bottom margin */
+}
+ 
+/* Section divider - now used only for the intro box if desired, or can be removed */
+.section-divider {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--border-color-subtle), rgba(0, 0, 0, 0));
+    margin: 3em 0;
+}
+ 
+/* Ensure main content takes available space for sticky footer */
+.content-wrapper {
+    flex-grow: 1;
+    display: flex; /* Use flex to center the about-container if needed */
+    justify-content: center;
+    align-items: flex-start; /* Align to top, not center, to allow scrolling */
+    padding: 20px 0; /* Add padding for overall content */
+    width: 100%;
+}
+ 
+/* Responsive adjustments for about page */
+@media (max-width: 768px) {
+    .about-section-box {
+        padding: 25px;
+    }
+ 
+    .intro-box h1 {
+        font-size: 2.2rem;
+    }
+ 
+    .about-section-box h2 {
+        font-size: 1.8rem;
+    }
+ 
+    /* Adjust team member layout for smaller screens */
+    .team-member {
+        flex-direction: column; /* Stack image and text vertically */
+        text-align: center; /* Center text when stacked */
+        gap: 10px; /* Reduce gap when stacked */
+    }
+ 
+    .team-member img {
+        margin-bottom: 10px; /* Add margin below image when stacked */
+    }
+ 
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Footer */
+.footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    text-align: center;
+    color: #9CA3AF;
+    font-size: 0.875rem;
+}

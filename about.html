@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About|CoZero</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sreda&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/home-light-dark-mode.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-wrapper">
+            <div class="header-left">
+                <div class="site-logo-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 4C10 4 8 6 8 8C8 10 12 14 12 14C12 14 16 10 16 8C16 6 14 4 12 4Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <a href="home.html" class="logo-link">
+                    <h1 class="logo">CoZero</h1>
+                </a>
+            </div>
+            
+            <div class="header-right">
+                <nav class="header-nav">
+                    <a href="home.html" class="nav-link">Home</a>
+                    <a href="activity.html" class="nav-link">Activity</a>
+                    <a href="insights.html" class="nav-link">Dashboard</a>
+                    <a href="about.html" class="nav-link current-page">About</a>
+                </nav>
+
+                <a href="notif.html" class="notification-button" id="notification-link">
+                    <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </a>
+
+                <button id="profileDropdownButton" class="profile-button">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="profile-name" id="profileUsername">Loading...</span>
+                    <svg class="icon-svg dropdown-arrow" viewBox="0 0 24 24">
+                        <path d="M6 9l6 6 6-6"></path>
+                    </svg>
+                </button>
+                
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+
+                <div id="profileDropdown" class="profile-dropdown">
+                    <a href="#" class="dropdown-item">Your Profile</a>
+                    <a href="settings.html" class="dropdown-item">Settings</a>
+                    <a href="#" id="logoutButton" class="dropdown-item">Log out</a>
+                </div>
+            </div>
+        </div>
+        <div class="vaporwave-line"></div>
+    </header>
+
+    <main class="content-wrapper">
+        <div class="container about-page-content">
+            <div class="about-section-box intro-box">
+                <h1>About Cozero</h1>
+                <p>Welcome to Cozero: Measuring Your Daily Carbon Habits, One Day at a Time!</p>
+                <p>Cozero is a beginner-friendly web application designed to help individuals like you track your daily carbon footprint and develop eco-conscious habits. We believe that while large-scale climate solutions are crucial, personal accountability plays a vital role in addressing climate change.</p>
+                <div class="sdg-info">
+                    <p>Our project is deeply inspired by Sustainable Development Goal 13: Climate Action. We empower users to log daily activities such as transportation, food choices, and energy usage to estimate their carbon emissions, fostering a greater understanding of their environmental impact.</p>
+                </div>
+            </div>
+
+            <div class="about-section-box">
+                <h2>Our Mission</h2>
+                <p>In the Philippines, many individuals are often unaware of how their daily habits contribute to carbon emissions. There's a significant gap in tools that offer a simple, localized, and user-friendly way to track and reduce one’s carbon footprint.</p>
+                <p>Cozero aims to bridge this gap by:</p>
+                <ul>
+                    <li>Helping you log and monitor your daily carbon emissions.</li>
+                    <li>Increasing awareness of how everyday actions affect the environment.</li>
+                    <li>Encouraging you to form sustainable habits through reminders and visual feedback.</li>
+                    <li>Supporting SDG 13 by promoting climate action at the individual level.</li>
+                </ul>
+            </div>
+
+            <div class="about-section-box">
+                <h2>How Cozero Works</h2>
+                <p>Cozero provides an accessible web application tailored for beginners who want to start making eco-conscious decisions. Here's a glimpse of our core features:</p>
+                <ul>
+                    <li>User Accounts: Secure registration and login to save your progress.</li>
+                    <li>Daily Activity Tracker: Log your transportation, food choices, and energy usage.</li>
+                    <li>Carbon Emission Estimation: Get an estimate of your CO₂ emissions based on your inputs.</li>
+                    <li>Data Visualization: See your progress over time with intuitive graphs and charts.</li>
+                    <li>Personalized Insights & Tips: Receive actionable advice to reduce your footprint.</li>
+                    <li>Daily Reminders: Get a friendly nudge to log your activities.</li>
+                    <li>Educational Information: Learn more about climate action and sustainable practices.</li>
+                    <li>Light/Dark Mode: Customize your viewing experience.</li>
+                </ul>
+                <p>We're focusing on making these features robust and user-friendly. For now, Cozero is a web application and does not include real-time carbon sensor integration or external business partnerships.</p>
+            </div>
+
+            <div class="about-section-box">
+                <h2>Our Technology</h2>
+                <p>Cozero is built using a modern and efficient technology stack:</p>
+                <ul>
+                    <li>Frontend: HTML, CSS, JavaScript, and Chart.js for interactive data visualizations.</li>
+                    <li>Backend: Firebase for authentication and activity logging.</li>
+                    <li>Database: Firebase for secure storage of user data and activity logs.</li>
+                    <li>Tools: GitHub for version control and Figma for design.</li>
+                </ul>
+            </div>
+
+            <div class="about-section-box">
+                <h2>Our Team</h2>
+                <p>Cozero is brought to you by a dedicated team committed to making a positive environmental impact:</p>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="assets/about/lei.jpg" alt="Lei Vincent B. Gonzales">
+                        <div class="team-member-info">
+                            <h4>Lei Vincent B. Gonzales</h4>
+                            <p>Project Manager, Frontend Developer, Backend Developer, QA Tester, UI/UX</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="assets/about/ivan.jpg" alt="Inocencio Ivan B. Guillermo">
+                        <div class="team-member-info">
+                            <h4>Inocencio Ivan B. Guillermo</h4>
+                            <p>Project Manager, Frontend Developer, Backend Developer, QA Tester, UI/UX</p>
+                        </div>
+                    </div>
+                </div>
+                <p>Our team members share multiple responsibilities to ensure the smooth development and quality of Cozero.</p>
+            </div>
+
+            <div class="about-section-box">
+                <h2>Join Us in Climate Action!</h2>
+                <p>We believe that every small step counts. By using Cozero, you're not just tracking numbers; you're becoming a part of the solution to one of the most pressing global challenges. Let's make sustainable habits a daily part of our lives, together.</p>
+                <p>Thank you for being environmentally conscious and choosing Cozero!</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CoZero. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA2ydl9-68gA-_3UXpxEJY6CfvTmCMPsLo",
+            authDomain: "cozero-tracker.firebaseapp.com",
+            projectId: "cozero-tracker",
+            storageBucket: "cozero-tracker.firebasestorage.app",
+            messagingSenderId: "178790925784",
+            appId: "1:178790925784:web:f3b6d1a9e1eeadee5adead",
+            measurementId: "G-PQEWJ0RVCW"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Header element references
+        const profileUsername = document.getElementById("profileUsername");
+        const profileDropdownButton = document.getElementById('profileDropdownButton');
+        const profileDropdown = document.getElementById('profileDropdown');
+        const logoutButton = document.getElementById("logoutButton");
+        const themeToggle = document.getElementById('theme-toggle');
+
+        // Auth State Listener
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                console.log("✅ User is signed in:", user.email);
+                const docRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    console.log("✅ User data from Firestore:", data);
+                    profileUsername.textContent = data.username || "User";
+                } else {
+                    console.warn("⚠️ No Firestore doc found for this user.");
+                    profileUsername.textContent = "Unknown";
+                }
+            } else {
+                console.warn("⚠️ No user is signed in.");
+                // Redirect to login only if not already on login page
+                if (window.location.pathname !== '/index.html' && window.location.pathname !== '/login.html') {
+                    window.location.href = "login.html";
+                }
+            }
+        });
+
+        // Logout functionality
+        if (logoutButton) {
+            logoutButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                signOut(auth)
+                    .then(() => {
+                        console.log("✅ User signed out successfully.");
+                        window.location.href = "index.html"; // Redirect to login after logout
+                    })
+                    .catch((error) => {
+                        console.error("❌ Error signing out:", error);
+                    });
+            });
+        }
+
+        // Profile dropdown toggle
+        if (profileDropdownButton) {
+            profileDropdownButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent document click from immediately closing it
+                profileDropdown.classList.toggle('show');
+            });
+        }
+        
+        // Close dropdown when clicking anywhere outside of it
+        document.addEventListener('click', (event) => {
+            if (profileDropdown && profileDropdownButton) { // Ensure elements exist
+                if (!profileDropdownButton.contains(event.target) && !profileDropdown.contains(event.target)) {
+                    profileDropdown.classList.remove('show');
+                }
+            }
+        });
+
+        // Theme Toggle functionality
+        if (themeToggle) {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.body.classList.add(savedTheme + '-mode'); // Append -mode for consistency
+                themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙'; // Adjusted icons
+            } else {
+                // Default to light mode if nothing saved
+                document.body.classList.add('light-mode');
+                themeToggle.textContent = '🌙'; // Default moon icon for light mode
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (document.body.classList.contains('light-mode')) {
+                    document.body.classList.remove('light-mode');
+                    document.body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggle.textContent = '🌙'; // Sun icon for dark mode
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    document.body.classList.add('light-mode');
+                    localStorage.setItem('theme', 'light');
+                    themeToggle.textContent = '☀️'; // Moon icon for light mode
+                }
+            });
+        }
+    </script>
+</body>
+</html>

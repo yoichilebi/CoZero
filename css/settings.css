@@ -1,0 +1,313 @@
+/* settings.css - Specific styles for the settings page content */
+
+.settings-container {
+    width: 90%; /* Maximize width to 90% of the viewport */
+    max-width: 1400px; /* Set a reasonable maximum width for very large screens */
+    margin: 50px auto;
+    padding: 50px; /* Keep padding consistent for spacious feel */
+    background-color: rgba(26, 26, 46, 0.9); /* Consistent with header background */
+    border: 1px solid rgba(0, 230, 230, 0.3); /* Consistent border */
+    border-radius: 15px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    color: #e0e0e0;
+}
+
+.settings-container h1 {
+    font-size: 2.8rem;
+    color: #00e6e6;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Sreda', 'JetBrains Mono', monospace;
+    text-shadow: 0 0 15px rgba(0, 230, 230, 0.6);
+}
+
+.setting-section {
+    padding: 20px;
+    border: 1px solid rgba(0, 230, 230, 0.15);
+    border-radius: 10px;
+    background-color: rgba(10, 10, 25, 0.7);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.setting-section h2 {
+    font-size: 1.8rem;
+    color: #00e6e6;
+    margin-bottom: 15px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 230, 230, 0.08);
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-item label {
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    color: #c0c0c0;
+}
+
+/* Styling for "Edit" link in settings items */
+.setting-item a {
+    color: #00e6e6; /* Cyan for links in dark mode */
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.setting-item a:hover {
+    color: #00ff00; /* Brighter green on hover */
+}
+
+
+/* Toggle Switch (still used for reminders/email notifications) */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #333;
+    transition: .4s;
+    border-radius: 28px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #00e6e6; /* Cyan when checked */
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+/* Select Input (newly added for Default Dashboard View and Units) */
+select {
+    width: 220px; /* Increased width for wider spacing */
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 230, 230, 0.3);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #e0e0e0; /* Color for the selected value */
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    -webkit-appearance: none; /* Remove default arrow on WebKit browsers */
+    -moz-appearance: none; /* Remove default arrow on Firefox */
+    appearance: none; /* Remove default arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2300e6e6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 18px;
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+    border-color: #00ff00;
+    box-shadow: 0 0 8px rgba(0, 230, 230, 0.5);
+}
+
+/* Styling for dropdown options - Dark Mode */
+select option {
+    background-color: #1a1a2e; /* Dark background similar to body */
+    color: #00e6e6; /* Cyan text for options */
+    /* Padding/Font-size on options are often ignored by browsers, but included for best effort */
+    padding: 8px 12px;
+    font-size: 1rem;
+}
+
+/* Hover/Focus state for options - Dark Mode */
+select option:hover,
+select option:checked {
+    background-color: rgba(0, 230, 230, 0.2); /* Lighter cyan background on hover/selection */
+    color: #00ff00; /* Brighter green text on hover/selection */
+}
+
+
+/* Reminder Time Input */
+.time-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.time-input-group input[type="time"] {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 230, 230, 0.3);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #e0e0e0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.time-input-group input[type="time"]:focus {
+    outline: none;
+    border-color: #00ff00;
+    box-shadow: 0 0 8px rgba(0, 230, 230, 0.5);
+}
+
+/* Light Mode Specific Styles for Settings */
+body.light-mode .settings-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+    color: #333333;
+}
+
+body.light-mode .settings-container h1,
+body.light-mode .setting-section h2 {
+    color: #ff6b6b;
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.4);
+}
+
+body.light-mode .setting-section {
+    background-color: rgba(240, 242, 245, 0.7);
+    border: 1px solid rgba(255, 107, 107, 0.15);
+}
+
+body.light-mode .setting-item {
+    border-bottom: 1px solid rgba(255, 107, 107, 0.08);
+}
+
+body.light-mode .setting-item label {
+    color: #555555;
+}
+
+body.light-mode .setting-item a {
+    color: #ff6b6b; /* Coral for links in light mode */
+}
+
+body.light-mode .setting-item a:hover {
+    color: #cc0000; /* Darker red on hover */
+}
+
+
+body.light-mode .switch input:checked + .slider {
+    background-color: #ff6b6b; /* Coral when checked in light mode */
+}
+
+body.light-mode .slider:before {
+    background-color: #f0f2f5;
+}
+
+/* Light mode for select input */
+body.light-mode select {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    color: #333333;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>'); /* Custom arrow for light mode */
+}
+
+body.light-mode select:focus {
+    border-color: #cc0000;
+    box-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
+}
+
+/* Styling for dropdown options - Light Mode */
+body.light-mode select option {
+    background-color: #f0f2f5; /* Light background similar to body */
+    color: #333333; /* Dark text for options */
+}
+
+/* Hover/Focus state for options - Light Mode */
+body.light-mode select option:hover,
+body.light-mode select option:checked {
+    background-color: rgba(255, 107, 107, 0.2); /* Lighter coral background on hover/selection */
+    color: #cc0000; /* Darker red text on hover/selection */
+}
+
+
+body.light-mode .time-input-group input[type="time"] {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    color: #333333;
+}
+
+body.light-mode .time-input-group input[type="time"]:focus {
+    border-color: #cc0000;
+    box-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
+}
+
+/* Responsive adjustments for settings page */
+@media (max-width: 768px) {
+    .settings-container {
+        width: 95%; /* Adjust percentage for smaller screens */
+        margin: 20px auto;
+        padding: 20px;
+    }
+    .settings-container h1 {
+        font-size: 2.2rem;
+    }
+    .setting-section h2 {
+        font-size: 1.5rem;
+    }
+    .setting-item label {
+        font-size: 1rem;
+    }
+    .switch {
+        width: 40px;
+        height: 22px;
+    }
+    .slider:before {
+        height: 16px;
+        width: 16px;
+        left: 3px;
+        bottom: 3px;
+    }
+    input:checked + .slider:before {
+        transform: translateX(18px);
+    }
+    .time-input-group input[type="time"] {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+    select {
+        width: 180px; /* Adjust width for smaller screens */
+        padding: 6px 10px;
+        font-size: 0.9rem;
+        background-position: right 6px center;
+        background-size: 16px;
+    }
+}

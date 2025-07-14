@@ -1,0 +1,132 @@
+/*
+ * light-dark-mode.css
+ * This file contains styles that override the default styles for light mode.
+ * Design Principle: Light grey background, dark grey text, vibrant coral accents.
+ */
+
+/* Light Mode Body & Global Overrides */
+body.light-mode {
+  color: #333333; /* Darker text for light mode */
+  background-color: #f0f2f5; /* Light grey background for light mode */
+}
+
+/* Light Mode Header Overrides */
+body.light-mode .site-header {
+  background-color: rgba(255, 255, 255, 0.9); /* Lighter, more transparent header */
+  border-bottom: 1px solid rgba(255, 107, 107, 0.1); /* Subtle coral border */
+}
+
+body.light-mode .logo {
+  color: #ff6b6b; /* Vibrant coral for logo in light mode */
+  text-shadow: 0 0 8px rgba(255, 107, 107, 0.4);
+}
+
+body.light-mode .vaporwave-line {
+  background: linear-gradient(90deg, transparent, #ff6b6b, transparent); /* Coral vapor wave line */
+}
+
+body.light-mode .auth-links {
+  background: rgba(255, 107, 107, 0.08); /* Subtle coral overlay */
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .auth-links a {
+  color: #ff6b6b; /* Vibrant coral link color */
+}
+
+body.light-mode .auth-links a::after {
+  background: #ff6b6b; /* Vibrant coral underline */
+}
+
+body.light-mode .auth-links a:hover {
+  color: #cc0000; /* Darker red on hover */
+}
+
+/* Light Mode Theme Toggle Overrides */
+body.light-mode .theme-toggle {
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  color: #ff6b6b; /* Vibrant coral icon color */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .theme-toggle:hover {
+  background: rgba(255, 107, 107, 0.18);
+  border-color: #cc0000; /* Darker red border on hover */
+  color: #cc0000; /* Darker red icon on hover */
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+}
+
+/* Light Mode Hero Section Overrides */
+body.light-mode .hero-section {
+  background: radial-gradient(circle at center, rgba(255, 107, 107, 0.05) 0%, transparent 70%); /* Subtle radial glow */
+}
+
+body.light-mode .hero-section h2 {
+  color: #ff6b6b; /* Hero section heading color - CORAL */
+  text-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+}
+
+body.light-mode .hero-section p {
+  color: #555555; /* Darker text for contrast */
+}
+
+/* NEW: Light Mode specific blinking caret animation */
+@keyframes light-blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #ff6b6b; } /* Blinking cursor 50% color, now vibrant coral for light mode */
+}
+
+/* Apply light mode animation to hero title */
+body.light-mode .hero-title {
+  /* Override the default animation with the light-mode specific one */
+  animation: smoothType 4s ease-out forwards, light-blink-caret 0.75s step-end infinite;
+  border-right-color: #ff6b6b; /* Ensure initial/final color is correct */
+  padding-right: 1.5ch; /* Maintained padding for spacing */
+  width: 34.5ch; /* Adjusted width for subtle more space */
+}
+
+body.light-mode .btn-primary {
+  background-color: #ff6b6b; /* Vibrant coral button background */
+  color: #fff; /* White text for contrast */
+  box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+}
+
+body.light-mode .btn-primary:hover {
+  background-color: #cc0000; /* Darker red on hover */
+  color: #fff;
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+}
+
+/* Light Mode Feature Cards Overrides */
+body.light-mode .features-section {
+  background-color: #e2e4e7; /* Slightly darker background for section contrast */
+}
+
+body.light-mode .feature-card {
+  background: rgba(255, 255, 255, 0.6); /* More opaque white background for glass effect */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+body.light-mode .feature-card:hover {
+  border-color: #ff6b6b; /* Vibrant coral border on hover */
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+}
+
+body.light-mode .feature-card h3 {
+  color: #ff6b6b; /* Vibrant coral heading color */
+  text-shadow: 0 0 5px rgba(255, 107, 107, 0.3);
+}
+
+body.light-mode .feature-card p {
+    color: #555555;
+}
+
+/* Light Mode Footer Overrides */
+body.light-mode .site-footer {
+  background-color: #d0d2d5; /* Distinct, slightly darker grey for footer */
+  color: #666; /* Softer grey footer text */
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}

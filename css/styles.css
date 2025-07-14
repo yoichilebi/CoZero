@@ -1,0 +1,367 @@
+/*
+ * style.css
+ * This file contains the default (dark mode) styles for your website.
+ * Design Principle: Deep indigo background, vibrant electric cyan accents, subtle glassmorphism.
+ */
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #e0e0e0; /* Soft off-white for main text in dark mode */
+  background-color: #1a1a2e; /* Deep indigo background for dark mode */
+  line-height: 1.6;
+  transition: background-color 0.4s ease, color 0.4s ease; /* Smoother transitions */
+
+  /* NEW: Flexbox for full page layout (especially for login/register pages) */
+  display: flex;
+  flex-direction: column; /* Stack header, main content, and footer vertically */
+  min-height: 100vh; /* Ensure body takes at least full viewport height */
+}
+
+/* Container for layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 25px; /* Slightly more padding */
+}
+
+/* Typography Enhancements */
+h1, h2, h3 {
+    font-family: 'Sreda', 'JetBrains Mono', monospace; /* Futuristic font for headings */
+    letter-spacing: 0.5px;
+}
+
+p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem; /* Slightly larger base paragraph font */
+}
+
+/* Logo - Futuristic Font */
+.logo {
+  font-size: 2rem; /* Slightly larger logo */
+  font-weight: 700; /* Bolder logo */
+  color: #00e6e6; /* Vibrant electric cyan for dark mode */
+  text-shadow: 0 0 8px rgba(0, 230, 230, 0.4); /* Subtle glow */
+}
+
+/* Styling for the clickable logo link */
+.logo-link {
+    text-decoration: none; /* Remove underline from the logo link */
+    color: inherit; /* Inherit color from h1.logo */
+}
+.logo-link:hover .logo {
+    opacity: 0.8; /* Subtle hover effect on the logo itself */
+    text-shadow: 0 0 12px rgba(0, 230, 230, 0.7); /* Slightly stronger glow on hover */
+}
+
+
+/* Header */
+.site-header {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column; /* Allow vaporwave line below content */
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0 0; /* Adjusted padding */
+  background-color: rgba(26, 26, 46, 0.9); /* Slightly transparent background for glass effect */
+  backdrop-filter: blur(12px); /* Stronger blur */
+  border-bottom: 1px solid rgba(0, 230, 230, 0.1); /* Subtle bottom border */
+  transition: background-color 0.4s ease, color 0.4s ease;
+  z-index: 10;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 15px; /* Space between content and line */
+}
+
+/* Animated Vaporwave Line */
+.vaporwave-line {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00e6e6, transparent); /* Vibrant electric cyan vapor wave line */
+  animation: vaporWave 4s cubic-bezier(0.4, 0, 0.2, 1) infinite; /* Smoother animation curve */
+  opacity: 0.7;
+  margin-top: 5px; /* Adjust spacing */
+}
+
+@keyframes vaporWave {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0.4;
+  }
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Increased gap */
+}
+
+.header-left {
+  justify-content: flex-start;
+  padding-left: 0;
+  margin-top: 0;
+  margin-left: -25px; /* Moves "CoZero" further to the left */
+}
+
+.header-right {
+  justify-content: flex-end;
+  padding-right: 0;
+  margin-top: 0;
+}
+
+/* Auth Links */
+.auth-links {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Increased gap */
+  font-family: 'JetBrains Mono', monospace;
+  padding: 10px 20px; /* Slightly larger padding */
+  border-radius: 15px; /* More rounded corners */
+  background: rgba(0, 230, 230, 0.08); /* Subtle cyan overlay */
+  border: 1px solid rgba(0, 230, 230, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  transition: all 0.3s ease;
+}
+
+.auth-links a {
+  text-decoration: none;
+  color: #00e6e6; /* Vibrant electric cyan link color */
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.auth-links a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -6px; /* Lower underline */
+  left: 0;
+  background: #00e6e6; /* Vibrant electric cyan underline */
+  transition: width 0.3s ease;
+}
+
+.auth-links a:hover::after {
+  width: 100%;
+}
+
+.auth-links a:hover {
+  color: #00ff00; /* Brighter green on hover for contrast */
+}
+
+/* Theme Toggle Button - Fixed Position in Top Right */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  background: rgba(0, 230, 230, 0.08);
+  border: 1px solid rgba(0, 230, 230, 0.3);
+  padding: 10px 16px;
+  border-radius: 15px;
+  font-size: 1.3rem;
+  color: #00e6e6; /* Vibrant electric cyan icon color */
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  z-index: 11;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(0, 230, 230, 0.18);
+  border-color: #00ff00;
+  color: #00ff00;
+  box-shadow: 0 0 20px rgba(0, 230, 230, 0.7);
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 120px 0;
+  text-align: center;
+  background: radial-gradient(circle at center, rgba(0, 230, 230, 0.05) 0%, transparent 70%);
+}
+
+.hero-section h2 {
+  font-size: 3rem;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+  color: #00e6e6;
+  text-shadow: 0 0 15px rgba(0, 230, 230, 0.5);
+}
+
+.hero-section p {
+  font-size: 1.25rem;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #c0c0c0;
+}
+
+.hero-title {
+  overflow: hidden;
+  border-right: .15em solid #00e6e6; /* Vibrant electric cyan blinking cursor */
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 2px;
+  width: 34.5ch; /* Adjusted width for subtle more space */
+  animation:
+    smoothType 4s ease-out forwards,
+    blink-caret 0.75s step-end infinite;
+  padding-right: 1.5ch; /* Maintained padding for spacing */
+}
+
+/* Typing animation */
+@keyframes smoothType {
+  from {
+    width: 0;
+  }
+  to {
+    width: 34.5ch; /* Adjusted to new width for animation completion */
+  }
+}
+
+/* Cursor blinking */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #00e6e6 }
+}
+
+.btn-primary {
+  background-color: #00e6e6;
+  color: #1a1a2e;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 230, 230, 0.4);
+}
+
+.btn-primary:hover {
+  background-color: #00ff00;
+  color: #0a0a1a;
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
+  transform: translateY(-3px);
+}
+
+/* Feature Cards */
+.features-section {
+  padding: 80px 0;
+  background-color: #121224;
+}
+
+.grid-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 35px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  border-color: #00e6e6;
+  box-shadow: 0 10px 30px rgba(0, 230, 230, 0.3);
+}
+
+.feature-card h3 {
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+  color: #00e6e6;
+  text-shadow: 0 0 5px rgba(0, 230, 230, 0.3);
+}
+
+.feature-card p {
+    color: #b0b0b0;
+}
+
+
+
+/* Wrapper for main content to center forms on login/register pages */
+.content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero-section h2 {
+    font-size: 2.5rem;
+  }
+  .hero-section p {
+    font-size: 1.1rem;
+  }
+  .theme-toggle {
+    top: 15px;
+    right: 15px;
+    padding: 8px 12px;
+    font-size: 1rem;
+  }
+  .auth-links {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+  .auth-links a {
+    font-size: 0.9rem;
+  }
+  .grid-columns {
+    grid-template-columns: 1fr;
+  }
+  .feature-card {
+    margin-bottom: 20px;
+  }
+}
+
+/* Footer Styling (unchanged, kept your existing styles as they are not header-related) */
+.site-footer {
+    background-color: #1F2937;
+    color: #D1D5DB;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .site-footer {
+    background-color: #F8FAFC;
+    color: #374151;
+}

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | CoZero</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sreda&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/home-light-dark-mode.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="css/activity.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-wrapper">
+            <div class="header-left">
+                <div class="site-logo-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 4C10 4 8 6 8 8C8 10 12 14 12 14C12 14 16 10 16 8C16 6 14 4 12 4Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <a href="home.html" class="logo-link">
+                    <h1 class="logo">CoZero</h1>
+                </a>
+            </div>
+            
+            <div class="header-right">
+                <nav class="header-nav">
+                    <a href="home.html" class="nav-link">Home</a>
+                    <a href="activity.html" class="nav-link">Activity</a>
+                    <a href="insights.html" class="nav-link">Dashboard</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </nav>
+
+                <a href="notif.html" class="notification-button" id="notification-link">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </a>
+
+                <button id="profileDropdownButton" class="profile-button">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="profile-name" id="profileUsername">Loading...</span>
+                    <svg class="icon-svg dropdown-arrow" viewBox="0 0 24 24">
+                        <path d="M6 9l6 6 6-6"></path>
+                    </svg>
+                </button>
+                
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+
+                <div id="profileDropdown" class="profile-dropdown">
+                    <a href="#" class="dropdown-item">Your Profile</a>
+                    <a href="settings.html" class="dropdown-item">Settings</a>
+                    <a href="#" id="logoutButton" class="dropdown-item">Log out</a>
+                </div>
+            </div>
+        </div>
+        <div class="vaporwave-line"></div>
+    </header>
+    
+    <main class="main-content-area">
+        <div class="settings-container">
+            <h1>Settings</h1>
+
+            <div class="setting-section">
+                <h2>General</h2>
+                <div class="setting-item">
+                    <label>Units of Measurement</label>
+                    <span class="setting-value">Metric (kg, km)</span>
+                </div>
+                <div class="setting-item">
+                    <label for="ui-animations-toggle">Enable UI Animations</label>
+                    <label class="switch">
+                        <input type="checkbox" id="ui-animations-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="setting-section">
+                <h2>Reminders & Notifications</h2>
+                <div class="setting-item">
+                    <label for="daily-reminder-toggle">Daily Activity Log Reminder</label>
+                    <label class="switch">
+                        <input type="checkbox" id="daily-reminder-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="reminder-time">Daily Reminder Time</label>
+                    <div class="time-input-group">
+                        <input type="time" id="reminder-time" value="08:00">
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label for="weekly-summary-toggle">Weekly Summary Notifications</label>
+                    <label class="switch">
+                        <input type="checkbox" id="weekly-summary-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="setting-section">
+                <h2>Account</h2>
+                <div class="setting-item">
+                    <label>Email Notifications</label>
+                    <label class="switch">
+                        <input type="checkbox" id="email-notifications-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CoZero. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script type="module">
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA2ydl9-68gA-_3UXpxEJY6CfvTmCMPsLo",
+            authDomain: "cozero-tracker.firebaseapp.com",
+            projectId: "cozero-tracker",
+            storageBucket: "cozero-tracker.firebasestorage.app",
+            messagingSenderId: "178790925784",
+            appId: "1:178790925784:web:f3b6d1a9e1eeadee5adead",
+            measurementId: "G-PQEWJ0RVCW"
+        };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // --- Header & Profile Dropdown Logic (runs after HTML is loaded) ---
+        const profileDropdownButton = document.getElementById('profileDropdownButton');
+        const profileDropdown = document.getElementById('profileDropdown');
+        const profileUsername = document.getElementById("profileUsername");
+        const logoutButton = document.getElementById("logoutButton");
+        const themeToggle = document.getElementById('theme-toggle');
+
+        // Set username based on auth state
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const docRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    profileUsername.textContent = docSnap.data().username || "User";
+                } else {
+                    profileUsername.textContent = "Unknown";
+                }
+            } else {
+                profileUsername.textContent = "Guest";
+                // Optionally redirect to login if user must be authenticated for this page
+                // window.location.href = "login.html"; 
+            }
+        });
+
+        // Logout functionality
+        if (logoutButton) {
+            logoutButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                signOut(auth)
+                    .then(() => {
+                        console.log("User signed out successfully.");
+                        window.location.href = "index.html";
+                    })
+                    .catch((error) => {
+                        console.error("Error signing out:", error);
+                    });
+            });
+        }
+
+        // Profile dropdown toggle
+        if (profileDropdownButton) {
+            profileDropdownButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent document click from immediately closing it
+                profileDropdown.classList.toggle('show');
+            });
+        }
+        
+        // Close dropdown when clicking anywhere outside of it
+        document.addEventListener('click', (event) => {
+            if (profileDropdown && profileDropdownButton) {
+                if (!profileDropdownButton.contains(event.target) && !profileDropdown.contains(event.target)) {
+                    profileDropdown.classList.remove('show');
+                }
+            }
+        });
+
+        // Theme Toggle functionality (ensure it's also running after elements are available)
+        if (themeToggle) {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.body.classList.add(savedTheme + '-mode'); // Append -mode for consistency
+                themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙'; // Adjusted icons
+            } else {
+                // Default to light mode if nothing saved
+                document.body.classList.add('light-mode');
+                themeToggle.textContent = '🌙';
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (document.body.classList.contains('light-mode')) {
+                    document.body.classList.remove('light-mode');
+                    document.body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggle.textContent = '☀️';
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    document.body.classList.add('light-mode');
+                    localStorage.setItem('theme', 'light');
+                    themeToggle.textContent = '🌙';
+                }
+            });
+        }
+
+
+        // --- Settings Page Specific JavaScript (ensure it also runs after relevant HTML is loaded) ---
+        // This entire block is now wrapped in DOMContentLoaded to be safe, though
+        // placing the script at the end of <body> typically negates the need for it.
+        // It's good practice for modularity or if this were in a separate file.
+        document.addEventListener('DOMContentLoaded', function() {
+            const uiAnimationsToggle = document.getElementById('ui-animations-toggle');
+            const dailyReminderToggle = document.getElementById('daily-reminder-toggle');
+            const reminderTimeInput = document.getElementById('reminder-time');
+            const weeklySummaryToggle = document.getElementById('weekly-summary-toggle');
+            const emailNotificationsToggle = document.getElementById('email-notifications-toggle');
+
+            function loadSettings() {
+                uiAnimationsToggle.checked = localStorage.getItem('uiAnimationsEnabled') !== 'false';
+                dailyReminderToggle.checked = localStorage.getItem('dailyReminderEnabled') === 'true';
+                reminderTimeInput.value = localStorage.getItem('dailyReminderTime') || '08:00';
+                weeklySummaryToggle.checked = localStorage.getItem('weeklySummaryEnabled') === 'true';
+                emailNotificationsToggle.checked = localStorage.getItem('emailNotificationsEnabled') === 'true';
+
+                // Firestore loading for settings - uncomment when ready to use
+                // const user = auth.currentUser;
+                // if (user) {
+                //     const userDocRef = doc(db, "users", user.uid);
+                //     getDoc(userDocRef).then(docSnap => {
+                //         if (docSnap.exists() && docSnap.data().settings) {
+                //             const settings = docSnap.data().settings;
+                //             uiAnimationsToggle.checked = settings.uiAnimationsEnabled !== false;
+                //             dailyReminderToggle.checked = settings.dailyReminderEnabled === true;
+                //             reminderTimeInput.value = settings.dailyReminderTime || '08:00';
+                //             weeklySummaryToggle.checked = settings.weeklySummaryEnabled === true;
+                //             emailNotificationsToggle.checked = settings.emailNotificationsEnabled === true;
+                //         }
+                //     }).catch(error => {
+                //         console.error("Error loading settings from Firestore:", error);
+                //     });
+                // }
+            }
+
+            function saveSettings() {
+                localStorage.setItem('uiAnimationsEnabled', uiAnimationsToggle.checked);
+                localStorage.setItem('dailyReminderEnabled', dailyReminderToggle.checked);
+                localStorage.setItem('dailyReminderTime', reminderTimeInput.value);
+                localStorage.setItem('weeklySummaryEnabled', weeklySummaryToggle.checked);
+                localStorage.setItem('emailNotificationsEnabled', emailNotificationsToggle.checked);
+
+                const user = auth.currentUser;
+                if (user) {
+                    const userDocRef = doc(db, "users", user.uid);
+                    updateDoc(userDocRef, {
+                        settings: {
+                            uiAnimationsEnabled: uiAnimationsToggle.checked,
+                            dailyReminderEnabled: dailyReminderToggle.checked,
+                            dailyReminderTime: reminderTimeInput.value,
+                            weeklySummaryEnabled: weeklySummaryToggle.checked,
+                            emailNotificationsEnabled: emailNotificationsToggle.checked
+                        }
+                    }).then(() => {
+                        console.log("Settings saved to Firestore.");
+                    }).catch((error) => {
+                        console.error("Error saving settings:", error);
+                    });
+                }
+                console.log("Settings saved locally.");
+            }
+
+            if (uiAnimationsToggle) uiAnimationsToggle.addEventListener('change', saveSettings);
+            if (dailyReminderToggle) dailyReminderToggle.addEventListener('change', saveSettings);
+            if (reminderTimeInput) reminderTimeInput.addEventListener('change', saveSettings);
+            if (weeklySummaryToggle) weeklySummaryToggle.addEventListener('change', saveSettings);
+            if (emailNotificationsToggle) emailNotificationsToggle.addEventListener('change', saveSettings);
+
+            loadSettings();
+        });
+    </script>
+</body>
+</html>
