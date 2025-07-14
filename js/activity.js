@@ -129,6 +129,50 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
+    // --- Light/Dark Mode Toggle ---
+    const themeToggleBtn = document.getElementById('theme-toggle'); // Get the toggle button
+    const body = document.body; // Get the body element to apply classes to
+
+    // Function to set the theme
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            body.classList.add('dark-mode');
+            body.classList.remove('light-mode');
+            if (themeToggleBtn) { // Check if button exists on this page
+                themeToggleBtn.textContent = '☀️'; // Sun icon for dark mode
+            }
+            localStorage.setItem('theme', 'dark'); // Save preference
+        } else {
+            body.classList.add('light-mode');
+            body.classList.remove('dark-mode');
+            if (themeToggleBtn) { // Check if button exists on this page
+                themeToggleBtn.textContent = '🌙'; // Moon icon for light mode
+            }
+            localStorage.setItem('theme', 'light'); // Save preference
+        }
+    }
+
+    // Apply saved theme on load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else {
+        // Default to light mode if no preference is saved
+        setTheme('light');
+    }
+
+    // Add event listener for the toggle button
+    if (themeToggleBtn) { // Only add listener if the button exists
+        themeToggleBtn.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+        });
+    }
+    // --- End Light/Dark Mode Toggle ---
+
     // --- Date Inputs ---
     const activityDateInput = document.getElementById('activityDate');
     const weekSelector = document.getElementById('weekSelector');
