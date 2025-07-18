@@ -1,0 +1,584 @@
+/* css/profile.css */
+
+/* Define CSS variables for easier theming if not already in home.css */
+:root {
+    --primary-color: #2DD4BF; /* Vibrant Cyan */
+    --secondary-color: #6EE7B7; /* Bright Green */
+    --accent-color: #00e6e6; /* Cyan accent */
+    --background-color: #1a1a2e; /* Deep Indigo */
+    --card-background-color: #1F2937; /* Dark Grey Blue */
+    --border-color: #374151; /* Subtle Grey Blue Border */
+    --text-color-primary: #e0e0e0; /* Soft off-white */
+    --text-color-secondary: #D1D5DB; /* Lighter grey for secondary text */
+    --error-color: #FF4136; /* Red for errors/danger */
+}
+
+/* Light Mode Variables (if not already in home-light-dark-mode.css) */
+body.light-mode {
+    --primary-color: #ff6b6b; /* Coral */
+    --secondary-color: #cc0000; /* Darker red */
+    --accent-color: #ff6b6b; /* Coral accent */
+    --background-color: #f0f2f5; /* Light grey */
+    --card-background-color: #FFFFFF; /* White */
+    --border-color: #D1D5DB; /* Light grey border */
+    --text-color-primary: #333333; /* Darker text */
+    --text-color-secondary: #6B7280; /* Medium grey */
+    --error-color: #B30000; /* Darker red for errors */
+}
+
+
+/* Ensure the main content wrapper has appropriate padding */
+.profile-page-content {
+    padding: 30px 20px; /* Increased top/bottom padding */
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Space between major sections */
+}
+
+/* General Section Styling for consistency with image's blocks */
+/* Applied to .profile-sidebar and .profile-content-area's children (stats-grid, tips-section, data-management-section) */
+.profile-sidebar,
+.profile-stats-grid,
+.tips-section,
+.data-management-section {
+    background-color: var(--card-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+body.light-mode .profile-sidebar,
+body.light-mode .profile-stats-grid,
+body.light-mode .tips-section,
+body.light-mode .data-management-section {
+    background-color: var(--card-background-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+.profile-title {
+    font-family: 'Sreda', 'JetBrains Mono', monospace;
+    font-size: 2.8em;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(45, 212, 191, 0.7);
+    letter-spacing: 1.5px;
+}
+
+body.light-mode .profile-title {
+    color: var(--primary-color);
+    text-shadow: none;
+    letter-spacing: 1px;
+}
+
+
+/* New: Main layout for two columns (sidebar + content) */
+.profile-main-layout {
+    display: flex;
+    gap: 30px; /* Space between sidebar and main content */
+    align-items: stretch; /* Make both columns stretch to the height of the tallest one */
+}
+
+/* Profile Sidebar (Left Column) */
+.profile-sidebar {
+    flex: 0 0 280px; /* Fixed width for sidebar */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally within sidebar */
+    text-align: center; /* Center text within sidebar */
+    padding: 30px;
+}
+
+/* Profile Avatar */
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 230, 230, 0.8);
+    border: 4px solid rgba(0, 230, 230, 0.6);
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 20px; /* Space below avatar */
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 230, 230, 1);
+}
+
+body.light-mode .profile-avatar {
+    background-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+body.light-mode .profile-avatar:hover {
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.9);
+}
+
+.profile-avatar .icon-svg {
+    width: 80px;
+    height: 80px;
+    color: var(--background-color);
+    fill: currentColor;
+}
+
+body.light-mode .profile-avatar .icon-svg {
+    color: #F8FAFC;
+}
+
+/* Profile Info in Sidebar */
+.profile-info-sidebar {
+    margin-bottom: 25px; /* Space before the button */
+}
+
+.profile-info-sidebar h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2em;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+    text-shadow: 0 0 8px rgba(110, 231, 183, 0.7);
+}
+
+body.light-mode .profile-info-sidebar h3 {
+    color: var(--secondary-color);
+    text-shadow: none;
+}
+
+.profile-info-sidebar .profile-secondary-info {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color-secondary);
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+body.light-mode .profile-info-sidebar .profile-secondary-info {
+    color: var(--text-color-secondary);
+}
+
+.profile-info-sidebar .member-since {
+    font-size: 0.95em;
+    color: #9CA3AF;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+body.light-mode .profile-info-sidebar .member-since {
+    color: var(--text-color-secondary);
+}
+
+.edit-profile-btn {
+    background-color: var(--accent-color);
+    color: #111827;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+    font-size: 1.1em;
+    width: 100%; /* Make button full width of sidebar */
+    box-shadow: 0 0 12px rgba(0, 230, 230, 0.6);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.edit-profile-btn:hover {
+    background-color: #00b3b3;
+    box-shadow: 0 0 25px rgba(0, 230, 230, 0.9);
+    transform: translateY(-3px);
+}
+
+body.light-mode .edit-profile-btn {
+    background-color: var(--accent-color);
+    color: #FFFFFF;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+body.light-mode .edit-profile-btn:hover {
+    background-color: #e65c5c;
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
+}
+
+
+/* Profile Content Area (Right Column) */
+.profile-content-area {
+    flex-grow: 1; /* Takes up remaining space */
+    display: flex; /* Make it a flex container to contain the stats grid */
+    flex-direction: column; /* Stack children vertically */
+}
+
+
+/* Profile Stats Grid (Now inside profile-content-area) */
+.profile-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    /* Styles are defined at the top for all card-like elements */
+    height: 100%; /* Make stats grid fill the height of its parent (profile-content-area) */
+}
+
+.stat-card {
+    background-color: #111827; /* Slightly darker card */
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.light-mode .stat-card {
+    background-color: var(--card-background-color);
+    border-color: var(--border-color);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--secondary-color);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode .stat-card:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1em;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+
+body.light-mode .stat-card h4 {
+    color: var(--primary-color);
+}
+
+.stat-card .stat-value {
+    font-family: 'Sreda', 'JetBrains Mono', monospace;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--secondary-color);
+    text-shadow: 0 0 8px rgba(110, 231, 183, 0.7);
+}
+
+body.light-mode .stat-card .stat-value {
+    color: var(--secondary-color);
+    text-shadow: none;
+}
+
+
+/* General Profile Section (for Tips, Data Management) */
+.profile-section {
+    margin-top: 30px; /* Add margin to separate from the main layout above */
+}
+
+.profile-section h3 {
+    font-family: 'Sreda', 'JetBrains Mono', monospace;
+    font-size: 2em;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 0 8px rgba(45, 212, 191, 0.6);
+}
+
+body.light-mode .profile-section h3 {
+    color: var(--primary-color);
+    text-shadow: none;
+}
+
+/* Personalized Tips Section */
+
+.tips-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+.tip-card {
+    background-color: #111827; /* Slightly darker card for tips */
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.light-mode .tip-card {
+    background-color: var(--card-background-color);
+    border-color: var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tip-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--secondary-color);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+body.light-mode .tip-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tip-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.2em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+body.light-mode .tip-card h4 {
+    color: var(--primary-color);
+}
+
+.tip-card p {
+    font-size: 0.95em;
+    color: var(--text-color-secondary);
+    line-height: 1.5;
+}
+
+body.light-mode .tip-card p {
+    color: var(--text-color-secondary);
+}
+
+.no-tips-message {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1em;
+    color: var(--text-color-secondary);
+    text-align: center;
+    grid-column: 1 / -1; /* Span across all columns in the tips-container grid */
+    padding: 20px;
+    font-style: italic;
+}
+
+body.light-mode .no-tips-message {
+    color: var(--text-color-secondary);
+}
+
+/* Data Management Section (Remains full width below two-column layout) */
+.data-management-section {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.action-button {
+    background-color: var(--accent-color);
+    color: #111827;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+    font-size: 1.15em;
+    box-shadow: 0 0 15px rgba(0, 230, 230, 0.7);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.action-button:hover {
+    background-color: #00b3b3;
+    box-shadow: 0 0 30px rgba(0, 230, 230, 1);
+    transform: translateY(-4px);
+}
+
+body.light-mode .action-button {
+    background-color: var(--accent-color);
+    color: #FFFFFF;
+    box-shadow: 0 0 12px rgba(255, 107, 107, 0.6);
+}
+
+body.light-mode .action-button:hover {
+    background-color: #e65c5c;
+    box-shadow: 0 0 25px rgba(255, 107, 107, 0.9);
+}
+
+.delete-account-button {
+    background-color: var(--error-color);
+    box-shadow: 0 0 15px rgba(255, 65, 54, 0.7);
+}
+
+.delete-account-button:hover {
+    background-color: #CC2920;
+    box-shadow: 0 0 30px rgba(255, 65, 54, 1);
+}
+
+body.light-mode .delete-account-button {
+    background-color: var(--error-color);
+    box-shadow: 0 0 12px rgba(179, 0, 0, 0.6);
+}
+
+body.light-mode .delete-account-button:hover {
+    background-color: #800000;
+    box-shadow: 0 0 25px rgba(179, 0, 0, 0.9);
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 992px) { /* Adjust breakpoint for two-column to stack */
+    .profile-main-layout {
+        flex-direction: column; /* Stack sidebar and content on smaller screens */
+        gap: 30px; /* Gap between stacked sections */
+        align-items: center; /* Center items when stacked */
+    }
+
+    .profile-sidebar {
+        flex: none; /* Remove fixed width */
+        width: 100%; /* Take full width */
+        padding: 25px; /* Slightly reduced padding */
+    }
+
+    .profile-avatar {
+        margin-bottom: 15px; /* Adjust margin when stacked */
+    }
+
+    .profile-info-sidebar {
+        margin-bottom: 20px; /* Adjust margin when stacked */
+    }
+
+    .profile-content-area {
+        width: 100%; /* Ensure content area takes full width when stacked */
+        /* No fixed height needed here, as flex-direction is column */
+    }
+
+    .profile-stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust for narrower screen */
+        height: auto; /* Allow height to be auto when stacked */
+    }
+
+    .tips-container {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Adjust for narrower screen */
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-title {
+        font-size: 2.2em;
+        margin-bottom: 25px;
+    }
+
+    .profile-page-content {
+        padding: 20px 15px;
+        gap: 25px;
+    }
+    
+    .profile-container > div {
+        padding: 25px;
+    }
+
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-avatar .icon-svg {
+        width: 70px;
+        height: 70px;
+    }
+
+    .profile-info-sidebar h3 {
+        font-size: 1.6em;
+    }
+
+    .profile-info-sidebar .profile-secondary-info {
+        font-size: 1em;
+    }
+
+    .edit-profile-btn {
+        padding: 10px 25px;
+        font-size: 1em;
+    }
+
+    .profile-stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+
+    .stat-card {
+        padding: 20px;
+    }
+
+    .stat-card .stat-value {
+        font-size: 2em;
+    }
+
+    .profile-section h3 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+
+    .tips-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust for smaller screens */
+        gap: 15px;
+    }
+
+    .tip-card {
+        padding: 15px;
+    }
+
+    .action-button {
+        padding: 12px 25px;
+        font-size: 1.05em;
+        margin: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-title {
+        font-size: 2em;
+    }
+
+    .profile-page-content {
+        padding: 15px 10px;
+        gap: 20px;
+    }
+
+    .profile-sidebar,
+    .profile-stats-grid,
+    .tips-section,
+    .data-management-section {
+        padding: 20px;
+    }
+
+    .profile-avatar {
+        width: 90px;
+        height: 90px;
+    }
+
+    .profile-avatar .icon-svg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .profile-info-sidebar h3 {
+        font-size: 1.4em;
+    }
+
+    .stat-card .stat-value {
+        font-size: 1.8em;
+    }
+
+    .tips-container {
+        grid-template-columns: 1fr; /* Stack on very small screens */
+    }
+    
+    .action-button {
+        width: calc(100% - 20px);
+        margin: 5px 10px;
+    }
+}
