@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings | CoZero</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sreda&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <script>
+        // This script runs synchronously and very early, before page content renders.
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.body.classList.remove('light-mode');
+        } else {
+            document.body.classList.add('light-mode');
+            document.body.classList.remove('dark-mode');
+        }
+    </script>
+    <link rel="stylesheet" href="css/home.css"> 
+    <link rel="stylesheet" href="css/home-light-dark-mode.css">
+    <link rel="stylesheet" href="css/profile.css"> 
+</head>
+<body class="body-layout">
+    <header class="site-header">
+        <div class="header-wrapper">
+            <div class="header-left">
+                <div class="site-logo-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 4C10 4 8 6 8 8C8 10 12 14 12 14C12 14 16 10 16 8C16 6 14 4 12 4Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h1 class="logo"><a href="dashboard.html">CoZero</a></h1>
+            </div>
+            <nav class="header-nav">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="activity.html" class="nav-link">Activity Log</a>
+                <a href="insights.html" class="nav-link">Insights</a>
+                <a href="about.html" class="nav-link">About</a>
+            </nav>
+            <div class="header-right">
+                <button class="theme-toggle" id="theme-toggle">🌙</button>
+                <button class="notification-button" id="notificationButton">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                </button>
+                <div class="profile-dropdown-container">
+                    <button class="profile-button" id="profileDropdownButton">
+                        <span class="profile-name" id="profileUsername">Loading...</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="profile.html" class="dropdown-item">View Profile</a>
+                        <a href="#" class="dropdown-item" id="logoutButton">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vaporwave-line"></div>
+    </header>
+
+    <main class="content-wrapper container">
+        <div class="profile-page-content">
+            <h2 class="profile-title">Account Settings</h2>
+            <div class="profile-info-card">
+                <p>Manage your account settings here.</p>
+                <p>This page is under development. Check back soon for more options!</p>
+                
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                    <h3>Change Password</h3>
+                    <p>Click the button below to send a password reset link to your email address.</p>
+                    <button class="action-button" id="sendPasswordResetEmailButton">Send Password Reset Email</button>
+                    <p id="passwordResetMessage" style="margin-top: 10px; font-size: 0.9em;"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CoZero. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script type="module" src="js/account-settings.js"></script>
+    <script src="js/home-theme-toggle.js"></script> 
+</body>
+</html>
