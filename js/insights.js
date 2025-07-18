@@ -67,36 +67,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // --- Profile Dropdown & Logout (Copied from activity.js for consistency) ---
-    if (profileDropdownButton) {
-        profileDropdownButton.addEventListener('click', (event) => {
-            event.stopPropagation(); // Prevent document click from closing it immediately
-            profileDropdown.classList.toggle('show');
-        });
-    }
-
-    if (logoutButton) {
-        logoutButton.addEventListener('click', async () => {
-            try {
-                await signOut(auth);
-                console.log("User logged out successfully.");
-                alert("Logged out successfully!");
-                window.location.href = "login.html";
-            } catch (error) {
-                console.error("Error logging out:", error.message);
-                alert("Error logging out: " + error.message);
-            }
-        });
-    }
-
-    window.addEventListener('click', (event) => {
-        if (!event.target.matches('.profile-button, .profile-button *')) {
-            if (profileDropdown && profileDropdown.classList.contains('show')) {
-                profileDropdown.classList.remove('show');
-            }
-        }
-    });
-
     // --- Chart Instances (to be reused/updated) ---
     let insightPieChartInstance;
     let insightLineChartInstance;
