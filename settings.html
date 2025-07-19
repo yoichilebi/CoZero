@@ -9,6 +9,53 @@
     <link rel="stylesheet" href="css/home-light-dark-mode.css">
     <link rel="stylesheet" href="css/settings.css">
     <link rel="stylesheet" href="css/activity.css">
+    <style>
+        /* Basic styling for the message box */
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--card-background-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-color-primary);
+        }
+        .message-box.show {
+            display: flex;
+        }
+        .message-box-content {
+            text-align: center;
+            font-size: 1.1em;
+        }
+        .message-box button {
+            background-color: var(--accent-color);
+            color: #111827;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .message-box button:hover {
+            background-color: #00b3b3;
+        }
+        body.light-mode .message-box button {
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+        }
+        body.light-mode .message-box button:hover {
+            background-color: #e65c5c;
+        }
+    </style>
 </head>
 <body>
     <header class="site-header">
@@ -109,11 +156,8 @@
             <div class="setting-section">
                 <h2>Account</h2>
                 <div class="setting-item">
-                    <label>Email Notifications</label>
-                    <label class="switch">
-                        <input type="checkbox" id="email-notifications-toggle" checked>
-                        <span class="slider"></span>
-                    </label>
+                    <label>Edit Password</label>
+                    <button id="editPasswordButton" class="action-button">Edit</button>
                 </div>
             </div>
             
@@ -125,9 +169,15 @@
             <p>&copy; 2025 CoZero. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Message Box HTML -->
+    <div id="messageBox" class="message-box">
+        <p id="messageBoxContent" class="message-box-content"></p>
+        <button id="messageBoxClose">OK</button>
+    </div>
     
     <script type="module">
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getAuth, onAuthStateChanged, signOut, updatePassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -150,6 +200,24 @@
         const profileUsername = document.getElementById("profileUsername");
         const logoutButton = document.getElementById("logoutButton");
         const themeToggle = document.getElementById('theme-toggle');
+
+        // Message box elements
+        const messageBox = document.getElementById('messageBox');
+        const messageBoxContent = document.getElementById('messageBoxContent');
+        const messageBoxClose = document.getElementById('messageBoxClose');
+
+        // Function to show custom message box
+        function showMessageBox(message) {
+            messageBoxContent.textContent = message;
+            messageBox.classList.add('show');
+        }
+
+        // Close message box
+        if (messageBoxClose) {
+            messageBoxClose.addEventListener('click', () => {
+                messageBox.classList.remove('show');
+            });
+        }
 
         // Set username based on auth state
         onAuthStateChanged(auth, async (user) => {
@@ -179,6 +247,7 @@
                     })
                     .catch((error) => {
                         console.error("Error signing out:", error);
+                        showMessageBox("Error signing out: " + error.message);
                     });
             });
         }
@@ -229,40 +298,19 @@
 
 
         // --- Settings Page Specific JavaScript (ensure it also runs after relevant HTML is loaded) ---
-        // This entire block is now wrapped in DOMContentLoaded to be safe, though
-        // placing the script at the end of <body> typically negates the need for it.
-        // It's good practice for modularity or if this were in a separate file.
         document.addEventListener('DOMContentLoaded', function() {
             const uiAnimationsToggle = document.getElementById('ui-animations-toggle');
             const dailyReminderToggle = document.getElementById('daily-reminder-toggle');
             const reminderTimeInput = document.getElementById('reminder-time');
             const weeklySummaryToggle = document.getElementById('weekly-summary-toggle');
-            const emailNotificationsToggle = document.getElementById('email-notifications-toggle');
+            const editPasswordButton = document.getElementById('editPasswordButton'); // New button
 
             function loadSettings() {
                 uiAnimationsToggle.checked = localStorage.getItem('uiAnimationsEnabled') !== 'false';
                 dailyReminderToggle.checked = localStorage.getItem('dailyReminderEnabled') === 'true';
                 reminderTimeInput.value = localStorage.getItem('dailyReminderTime') || '08:00';
                 weeklySummaryToggle.checked = localStorage.getItem('weeklySummaryEnabled') === 'true';
-                emailNotificationsToggle.checked = localStorage.getItem('emailNotificationsEnabled') === 'true';
-
-                // Firestore loading for settings - uncomment when ready to use
-                // const user = auth.currentUser;
-                // if (user) {
-                //     const userDocRef = doc(db, "users", user.uid);
-                //     getDoc(userDocRef).then(docSnap => {
-                //         if (docSnap.exists() && docSnap.data().settings) {
-                //             const settings = docSnap.data().settings;
-                //             uiAnimationsToggle.checked = settings.uiAnimationsEnabled !== false;
-                //             dailyReminderToggle.checked = settings.dailyReminderEnabled === true;
-                //             reminderTimeInput.value = settings.dailyReminderTime || '08:00';
-                //             weeklySummaryToggle.checked = settings.weeklySummaryEnabled === true;
-                //             emailNotificationsToggle.checked = settings.emailNotificationsEnabled === true;
-                //         }
-                //     }).catch(error => {
-                //         console.error("Error loading settings from Firestore:", error);
-                //     });
-                // }
+                // No longer loading a setting for "emailNotificationsToggle" as it's now a button
             }
 
             function saveSettings() {
@@ -270,7 +318,7 @@
                 localStorage.setItem('dailyReminderEnabled', dailyReminderToggle.checked);
                 localStorage.setItem('dailyReminderTime', reminderTimeInput.value);
                 localStorage.setItem('weeklySummaryEnabled', weeklySummaryToggle.checked);
-                localStorage.setItem('emailNotificationsEnabled', emailNotificationsToggle.checked);
+                // No longer saving a setting for "emailNotificationsToggle" as it's now a button
 
                 const user = auth.currentUser;
                 if (user) {
@@ -281,7 +329,6 @@
                             dailyReminderEnabled: dailyReminderToggle.checked,
                             dailyReminderTime: reminderTimeInput.value,
                             weeklySummaryEnabled: weeklySummaryToggle.checked,
-                            emailNotificationsEnabled: emailNotificationsToggle.checked
                         }
                     }).then(() => {
                         console.log("Settings saved to Firestore.");
@@ -292,11 +339,39 @@
                 console.log("Settings saved locally.");
             }
 
+            // Event listener for the new "Edit Password" button
+            if (editPasswordButton) {
+                editPasswordButton.addEventListener('click', async () => {
+                    const user = auth.currentUser;
+                    if (user) {
+                        const newPassword = prompt("Please enter your new password:");
+                        if (newPassword && newPassword.length >= 6) { // Firebase requires at least 6 characters
+                            try {
+                                await updatePassword(user, newPassword);
+                                showMessageBox("Password updated successfully!");
+                                console.log("Password updated successfully.");
+                            } catch (error) {
+                                console.error("Error updating password:", error);
+                                // Handle specific Firebase errors
+                                if (error.code === 'auth/requires-recent-login') {
+                                    showMessageBox("Please re-authenticate to change your password. Log out and log back in, then try again.");
+                                } else {
+                                    showMessageBox("Error updating password: " + error.message);
+                                }
+                            }
+                        } else if (newPassword !== null) { // If user didn't cancel, but input was invalid
+                            showMessageBox("Password must be at least 6 characters long.");
+                        }
+                    } else {
+                        showMessageBox("You must be logged in to change your password.");
+                    }
+                });
+            }
+
             if (uiAnimationsToggle) uiAnimationsToggle.addEventListener('change', saveSettings);
             if (dailyReminderToggle) dailyReminderToggle.addEventListener('change', saveSettings);
             if (reminderTimeInput) reminderTimeInput.addEventListener('change', saveSettings);
             if (weeklySummaryToggle) weeklySummaryToggle.addEventListener('change', saveSettings);
-            if (emailNotificationsToggle) emailNotificationsToggle.addEventListener('change', saveSettings);
 
             loadSettings();
         });
