@@ -370,11 +370,18 @@ body.light-mode .no-tips-message {
 
 /* Data Management Section (Remains full width below two-column layout) */
 .data-management-section {
-    text-align: center;
+    /* Reverted to original display behavior, but with flex for internal alignment */
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    flex-wrap: wrap; /* Allow items to wrap if needed */
+    justify-content: space-between; /* Push items to ends */
+    align-items: center; /* Vertically align items */
+    gap: 20px; /* Space between elements */
+}
+
+.data-management-section h3 {
+    text-align: left; /* Ensure the h3 itself is left-aligned */
+    margin-bottom: 0; /* Remove bottom margin to align with button */
+    flex-grow: 1; /* Allow h3 to take available space */
 }
 
 .action-button {
@@ -411,6 +418,7 @@ body.light-mode .action-button:hover {
 .delete-account-button {
     background-color: var(--error-color);
     box-shadow: 0 0 15px rgba(255, 65, 54, 0.7);
+    margin-left: auto; /* Pushes this button to the far right */
 }
 
 .delete-account-button:hover {
@@ -463,6 +471,21 @@ body.light-mode .delete-account-button:hover {
 
     .tips-container {
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Adjust for narrower screen */
+    }
+
+    /* Responsive adjustment for data-management-section on smaller screens */
+    .data-management-section {
+        flex-direction: column; /* Stack heading and button vertically */
+        align-items: center; /* Center items when stacked */
+    }
+
+    .data-management-section h3 {
+        text-align: center; /* Center heading when stacked */
+        margin-bottom: 20px; /* Add space below heading */
+    }
+
+    .delete-account-button {
+        margin-left: 0; /* Remove auto margin when stacked */
     }
 }
 
