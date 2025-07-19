@@ -1,35 +1,62 @@
 /* settings.css - Specific styles for the settings page content */
 
+/* Define CSS variables for easier theming */
+:root {
+    --primary-color: #2DD4BF; /* Vibrant Cyan */
+    --secondary-color: #6EE7B7; /* Bright Green */
+    --accent-color: #00e6e6; /* Cyan accent */
+    --background-color: #1a1a2e; /* Deep Indigo */
+    --card-background-color: #1F2937; /* Dark Grey Blue */
+    --border-color: #374151; /* Subtle Grey Blue Border */
+    --text-color-primary: #e0e0e0; /* Soft off-white */
+    --text-color-secondary: #D1D5DB; /* Lighter grey for secondary text */
+    --error-color: #FF4136; /* Red for errors/danger */
+}
+
+/* Light Mode Variables */
+body.light-mode {
+    --primary-color: #ff6b6b; /* Coral */
+    --secondary-color: #cc0000; /* Darker red */
+    --accent-color: #ff6b6b; /* Coral accent */
+    --background-color: #f0f2f5; /* Light grey */
+    --card-background-color: #FFFFFF; /* White */
+    --border-color: #D1D5DB; /* Light grey border */
+    --text-color-primary: #333333; /* Darker text */
+    --text-color-secondary: #6B7280; /* Medium grey */
+    --error-color: #B30000; /* Darker red for errors */
+}
+
+
 .settings-container {
     width: 90%; /* Maximize width to 90% of the viewport */
     max-width: 1400px; /* Set a reasonable maximum width for very large screens */
     margin: 50px auto;
     padding: 50px; /* Keep padding consistent for spacious feel */
-    background-color: rgba(26, 26, 46, 0.9); /* Consistent with header background */
-    border: 1px solid rgba(0, 230, 230, 0.3); /* Consistent border */
+    background-color: var(--background-color); /* Use variable */
+    border: 1px solid var(--border-color); /* Use variable */
     border-radius: 15px;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     gap: 25px;
-    color: #e0e0e0;
+    color: var(--text-color-primary); /* Use variable */
 }
 
 .settings-container h1 {
     font-size: 2.8rem;
-    color: #00e6e6;
+    color: var(--accent-color); /* Use variable */
     text-align: center;
     margin-bottom: 20px;
     font-family: 'Sreda', 'JetBrains Mono', monospace;
-    text-shadow: 0 0 15px rgba(0, 230, 230, 0.6);
+    text-shadow: 0 0 15px rgba(0, 230, 230, 0.6); /* Keep rgba for specific glow */
 }
 
 .setting-section {
     padding: 20px;
-    border: 1px solid rgba(0, 230, 230, 0.15);
+    border: 1px solid var(--border-color); /* Use variable */
     border-radius: 10px;
-    background-color: rgba(10, 10, 25, 0.7);
+    background-color: rgba(10, 10, 25, 0.7); /* Keep specific rgba for background */
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -37,7 +64,7 @@
 
 .setting-section h2 {
     font-size: 1.8rem;
-    color: #00e6e6;
+    color: var(--accent-color); /* Use variable */
     margin-bottom: 15px;
     font-family: 'JetBrains Mono', monospace;
 }
@@ -47,7 +74,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    border-bottom: 1px solid rgba(0, 230, 230, 0.08);
+    border-bottom: 1px solid var(--border-color); /* Use variable */
 }
 
 .setting-item:last-child {
@@ -57,20 +84,30 @@
 .setting-item label {
     font-size: 1.1rem;
     font-family: 'Inter', sans-serif;
-    color: #c0c0c0;
+    color: var(--text-color-secondary); /* Use variable */
 }
 
-/* Styling for "Edit" link in settings items */
-.setting-item a {
-    color: #00e6e6; /* Cyan for links in dark mode */
-    text-decoration: none;
+/* Styling for "Edit" button in settings items (now uses .action-button class) */
+/* The .action-button class is expected to be defined in home.css or similar shared styles */
+.action-button {
+    /* Ensure consistency with other action buttons across the site */
+    background-color: var(--accent-color);
+    color: #111827; /* Dark text for light accent background */
+    padding: 10px 20px; /* Adjusted padding for a smaller button in settings */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 1rem;
-    transition: color 0.3s ease;
+    font-weight: bold;
+    font-size: 1rem; /* Adjusted font size */
+    box-shadow: 0 0 10px rgba(0, 230, 230, 0.5); /* Adjusted shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.setting-item a:hover {
-    color: #00ff00; /* Brighter green on hover */
+.action-button:hover {
+    background-color: #00b3b3;
+    box-shadow: 0 0 20px rgba(0, 230, 230, 0.8);
+    transform: translateY(-2px); /* Slightly less aggressive hover effect */
 }
 
 
@@ -95,7 +132,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #333;
+    background-color: var(--border-color); /* Use variable for background */
     transition: .4s;
     border-radius: 28px;
 }
@@ -107,13 +144,13 @@
     width: 20px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: white; /* Keep white for the knob */
     transition: .4s;
     border-radius: 50%;
 }
 
 input:checked + .slider {
-    background-color: #00e6e6; /* Cyan when checked */
+    background-color: var(--accent-color); /* Use variable when checked */
 }
 
 input:checked + .slider:before {
@@ -123,18 +160,19 @@ input:checked + .slider:before {
 /* Select Input (newly added for Default Dashboard View and Units) */
 select {
     width: 220px; /* Increased width for wider spacing */
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(0, 230, 230, 0.3);
+    background-color: rgba(0, 0, 0, 0.3); /* Keep rgba for specific transparency */
+    border: 1px solid var(--border-color); /* Use variable */
     border-radius: 8px;
     padding: 8px 12px;
-    color: #e0e0e0; /* Color for the selected value */
+    color: var(--text-color-primary); /* Use variable */
     font-family: 'JetBrains Mono', monospace;
     font-size: 1rem;
     transition: border-color 0.3s ease;
     -webkit-appearance: none; /* Remove default arrow on WebKit browsers */
     -moz-appearance: none; /* Remove default arrow on Firefox */
     appearance: none; /* Remove default arrow */
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2300e6e6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>'); /* Custom arrow */
+    /* Custom arrow using SVG, color needs to be dynamic if possible, otherwise keep hardcoded for simplicity */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2300e6e6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
     background-repeat: no-repeat;
     background-position: right 8px center;
     background-size: 18px;
@@ -143,14 +181,14 @@ select {
 
 select:focus {
     outline: none;
-    border-color: #00ff00;
-    box-shadow: 0 0 8px rgba(0, 230, 230, 0.5);
+    border-color: var(--secondary-color); /* Use variable */
+    box-shadow: 0 0 8px rgba(0, 230, 230, 0.5); /* Keep rgba for specific glow */
 }
 
 /* Styling for dropdown options - Dark Mode */
 select option {
-    background-color: #1a1a2e; /* Dark background similar to body */
-    color: #00e6e6; /* Cyan text for options */
+    background-color: var(--background-color); /* Use variable */
+    color: var(--accent-color); /* Use variable */
     /* Padding/Font-size on options are often ignored by browsers, but included for best effort */
     padding: 8px 12px;
     font-size: 1rem;
@@ -159,8 +197,8 @@ select option {
 /* Hover/Focus state for options - Dark Mode */
 select option:hover,
 select option:checked {
-    background-color: rgba(0, 230, 230, 0.2); /* Lighter cyan background on hover/selection */
-    color: #00ff00; /* Brighter green text on hover/selection */
+    background-color: rgba(45, 212, 191, 0.2); /* Use primary-color with opacity */
+    color: var(--secondary-color); /* Use variable */
 }
 
 
@@ -172,11 +210,11 @@ select option:checked {
 }
 
 .time-input-group input[type="time"] {
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(0, 230, 230, 0.3);
+    background-color: rgba(0, 0, 0, 0.3); /* Keep rgba for specific transparency */
+    border: 1px solid var(--border-color); /* Use variable */
     border-radius: 8px;
     padding: 8px 12px;
-    color: #e0e0e0;
+    color: var(--text-color-primary); /* Use variable */
     font-family: 'JetBrains Mono', monospace;
     font-size: 1rem;
     transition: border-color 0.3s ease;
@@ -184,90 +222,93 @@ select option:checked {
 
 .time-input-group input[type="time"]:focus {
     outline: none;
-    border-color: #00ff00;
-    box-shadow: 0 0 8px rgba(0, 230, 230, 0.5);
+    border-color: var(--secondary-color); /* Use variable */
+    box-shadow: 0 0 8px rgba(0, 230, 230, 0.5); /* Keep rgba for specific glow */
 }
 
 /* Light Mode Specific Styles for Settings */
 body.light-mode .settings-container {
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 107, 107, 0.3);
+    background-color: var(--card-background-color); /* Use variable */
+    border: 1px solid var(--border-color); /* Use variable */
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
-    color: #333333;
+    color: var(--text-color-primary); /* Use variable */
 }
 
 body.light-mode .settings-container h1,
 body.light-mode .setting-section h2 {
-    color: #ff6b6b;
-    text-shadow: 0 0 10px rgba(255, 107, 107, 0.4);
+    color: var(--primary-color); /* Use variable */
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.4); /* Keep rgba for specific glow */
 }
 
 body.light-mode .setting-section {
-    background-color: rgba(240, 242, 245, 0.7);
-    border: 1px solid rgba(255, 107, 107, 0.15);
+    background-color: var(--background-color); /* Use variable */
+    border: 1px solid var(--border-color); /* Use variable */
 }
 
 body.light-mode .setting-item {
-    border-bottom: 1px solid rgba(255, 107, 107, 0.08);
+    border-bottom: 1px solid var(--border-color); /* Use variable */
 }
 
 body.light-mode .setting-item label {
-    color: #555555;
+    color: var(--text-color-secondary); /* Use variable */
 }
 
-body.light-mode .setting-item a {
-    color: #ff6b6b; /* Coral for links in light mode */
+body.light-mode .action-button {
+    background-color: var(--accent-color);
+    color: #FFFFFF; /* White text for light accent background */
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
 }
 
-body.light-mode .setting-item a:hover {
-    color: #cc0000; /* Darker red on hover */
+body.light-mode .action-button:hover {
+    background-color: #e65c5c;
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
 }
-
 
 body.light-mode .switch input:checked + .slider {
-    background-color: #ff6b6b; /* Coral when checked in light mode */
+    background-color: var(--accent-color); /* Use variable when checked in light mode */
 }
 
 body.light-mode .slider:before {
-    background-color: #f0f2f5;
+    background-color: var(--background-color); /* Use variable for knob */
 }
 
 /* Light mode for select input */
 body.light-mode select {
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 107, 107, 0.3);
-    color: #333333;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>'); /* Custom arrow for light mode */
+    background-color: var(--card-background-color); /* Use variable */
+    border: 1px solid var(--border-color); /* Use variable */
+    color: var(--text-color-primary); /* Use variable */
+    /* Custom arrow for light mode */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
 }
 
 body.light-mode select:focus {
-    border-color: #cc0000;
-    box-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
+    border-color: var(--secondary-color); /* Use variable */
+    box-shadow: 0 0 8px rgba(255, 107, 107, 0.5); /* Keep rgba for specific glow */
 }
 
 /* Styling for dropdown options - Light Mode */
 body.light-mode select option {
-    background-color: #f0f2f5; /* Light background similar to body */
-    color: #333333; /* Dark text for options */
+    background-color: var(--background-color); /* Use variable */
+    color: var(--text-color-primary); /* Use variable */
 }
 
 /* Hover/Focus state for options - Light Mode */
 body.light-mode select option:hover,
 body.light-mode select option:checked {
-    background-color: rgba(255, 107, 107, 0.2); /* Lighter coral background on hover/selection */
-    color: #cc0000; /* Darker red text on hover/selection */
+    background-color: rgba(255, 107, 107, 0.2); /* Use primary-color with opacity */
+    color: var(--secondary-color); /* Use variable */
 }
 
 
 body.light-mode .time-input-group input[type="time"] {
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 107, 107, 0.3);
-    color: #333333;
+    background-color: var(--card-background-color); /* Use variable */
+    border: 1px solid var(--border-color); /* Use variable */
+    color: var(--text-color-primary); /* Use variable */
 }
 
 body.light-mode .time-input-group input[type="time"]:focus {
-    border-color: #cc0000;
-    box-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
+    border-color: var(--secondary-color); /* Use variable */
+    box-shadow: 0 0 8px rgba(255, 107, 107, 0.5); /* Keep rgba for specific glow */
 }
 
 /* Responsive adjustments for settings page */
